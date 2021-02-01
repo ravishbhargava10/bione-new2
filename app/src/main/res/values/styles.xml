@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name="MyActionBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">#fa0</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <!--        <item name="actionBarTabBarStyle">@color/white</item>-->
+        <!--        <item name="android:actionBarItemBackground">@color/colorPrimary</item>-->
+        <item name="colorPrimary">@color/white</item>
+
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+
+    </style>
+
+
+    <style name="CustomTextAppearance" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/Poppins-Regular.ttf</item>
+    </style>
+
+    <!--Custom medium text appearance-->
+    <style name="CustomTextAppearance.Medium" parent="CustomTextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/Poppins-Medium.ttf</item>
+<!--        <item name="android:textStyle">bold</item>-->
+    </style>
+
+    <!--Custom bold text appearance-->
+    <style name="CustomTextAppearance.Bold" parent="CustomTextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/Poppins-Medium.ttf</item>
+                <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--Custom semibold text appearance-->
+    <style name="CustomTextAppearance.Semibold" parent="CustomTextAppearance">
+        <item name="fontPath">fonts/Poppins-SemiBold.ttf</item>
+    </style>
+
+    <!--Custom light text appearance-->
+    <style name="CustomTextAppearance.Light" parent="CustomTextAppearance">
+        <item name="fontPath">fonts/Poppins-Light.ttf</item>
+    </style>
+
+
+    <style name="normalText" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/spacing_small</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_xsmall</item>
+        <item name="android:layout_marginTop">@dimen/spacing_small</item>
+        <item name="android:textAppearance">@style/CustomTextAppearance</item>
+        <item name="android:textSize">@dimen/font_small</item>
+    </style>
+</resources>
