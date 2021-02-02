@@ -4,30 +4,30 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_dashboard"
-            android:icon="@drawable/ic_launcher"
+            android:icon="@mipmap/ic_launcher"
             android:title="@string/nav_dashboard" />
 
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_launcher"
+            android:icon="@mipmap/ic_launcher"
             android:title="@string/nav_profile" />
 
         <item
             android:id="@+id/nav_session"
-            android:icon="@drawable/ic_launcher"
+            android:icon="@mipmap/ic_launcher"
             android:title="@string/nav_mysessions" />
         <item
             android:id="@+id/nav_chat"
-            android:icon="@drawable/ic_launcher"
+            android:icon="@mipmap/ic_launcher"
             android:title="@string/nav_chat" />
 
         <item
             android:id="@+id/nav_faq"
-            android:icon="@drawable/ic_launcher"
+            android:icon="@mipmap/ic_launcher"
             android:title="@string/nav_faq" />
         <item
             android:id="@+id/nav_receipt"
-            android:icon="@drawable/ic_launcher"
+            android:icon="@mipmap/ic_launcher"
             android:title="@string/nav_receipt" />
 
     </group>

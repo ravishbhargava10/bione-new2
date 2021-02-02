@@ -108,7 +108,16 @@ dependencies {
     // zoho integration
 //    implementation 'com.zoho.salesiq:mobilisten:2.2'
 
-    //slide menu
+    implementation 'com.github.bumptech.glide:glide:4.4.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
+    // for multi picker
+    implementation 'com.kbeanie:multipicker:1.1.31@aar'
+    // for cropping
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
+    // for circle image view
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+//    //slide menu
     implementation 'com.specyci:residemenu:1.6+'
 
 }

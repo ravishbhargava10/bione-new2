@@ -31,6 +31,16 @@
     <!-- Error messages -->
     <string name="error_not_a_valid_image_file">File is not a valid image.</string>
 
+    <!-- Image Chooser -->
+    <string name="text_cancel">Cancel</string>
+    <string name="text_camera">Camera</string>
+    <string name="text_setting">Settings</string>
+    <string name="text_gallery">Gallery</string>
+    <string name="text_multiple">Multiple</string>
+    <string name="text_choose_image">Choose Image</string>
+    <string name="permission_camera_storage_msg">Permissions are required for camera &amp; storage.</string>
+    <string name="permission_camera_storage_denied_msg">Permissions denied. Please grant permission for camera &amp; storage in setting.</string>
+
     <!-- Dialog -->
     <string name="text_retry">Retry</string>
     <string name="text_exit">Exit</string>
