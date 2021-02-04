@@ -9,7 +9,14 @@
         android:id="@+id/ivHead"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="visible"
         android:background="@drawable/image_01" />
+
+    <View
+        android:layout_width="420dp"
+        android:layout_height="420dp"
+        android:visibility="gone"
+        android:background="@color/colorPrimary"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvHeading"

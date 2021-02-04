@@ -179,6 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:background="@drawable/drawable_border_button"
+                android:elevation="5dp"
                 android:gravity="center"
                 android:padding="@dimen/spacing_small"
                 android:text="Send Otp"
@@ -217,16 +218,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:text="@string/i_would_like_to_receive_news_and_promotion_email_from_bione"
-                android:textColor="#80333333"
                 android:textAppearance="@style/CustomTextAppearance"
+                android:textColor="#80333333"
                 android:textSize="@dimen/font_small" />
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/cbSecond"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/CustomTextAppearance"
                 android:text="@string/i_have_read_and_agree_to_the_terms_of_services"
+                android:textAppearance="@style/CustomTextAppearance"
                 android:textColor="#80333333"
                 android:textSize="@dimen/font_small" />
 
@@ -234,8 +235,8 @@
                 android:id="@+id/cbThird"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/CustomTextAppearance"
                 android:text="@string/i_have_read_and_agree_to_the_privacy_statement"
+                android:textAppearance="@style/CustomTextAppearance"
                 android:textColor="#80333333"
                 android:textSize="@dimen/font_small" />
 
@@ -246,6 +247,7 @@
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:background="@drawable/drawable_border_primary"
                 android:drawableRight="@drawable/ic_login_next"
+                android:elevation="5dp"
                 android:gravity="center"
                 android:padding="@dimen/spacing_small"
                 android:text="Sign Up"

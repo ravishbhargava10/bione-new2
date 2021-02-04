@@ -1,6 +1,8 @@
 package com.bione.ui;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
 import com.bione.R;
@@ -30,6 +32,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -37,7 +40,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class MainActivity extends BaseActivity {
 
 
-    private static final Float END_SCALE = 0.7f;
+    private static final Float END_SCALE = 0.8f;
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private View navHeader;
@@ -112,6 +115,7 @@ public class MainActivity extends BaseActivity {
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setItemIconTintList(null);
         Log.d("getHeaderCount", "------" + navigationView.getHeaderCount());
         // Navigation view header
         navHeader = navigationView.getHeaderView(0);
@@ -314,26 +318,31 @@ public class MainActivity extends BaseActivity {
                         CURRENT_TAG = TAG_PROFILE;
                         break;
 
-                    case R.id.nav_session:
-                        navItemIndex = 2;
-                        CURRENT_TAG = TAG_SESSION;
-                        break;
+//                    case R.id.nav_session:
+//                        navItemIndex = 2;
+//                        CURRENT_TAG = TAG_SESSION;
+//                        break;
 
                     case R.id.nav_chat:
                         navItemIndex = 3;
                         CURRENT_TAG = TAG_CHAT;
                         break;
 
-                    case R.id.nav_faq:
-                        navItemIndex = 4;
-                        CURRENT_TAG = TAG_FAQ;
-                        break;
+//                    case R.id.nav_faq:
+//                        navItemIndex = 4;
+//                        CURRENT_TAG = TAG_FAQ;
+//                        break;
 
                     case R.id.nav_receipt:
-                        navItemIndex = 5;
+                        navItemIndex = 2;
                         CURRENT_TAG = TAG_CUSTOMER_RECEIPT;
 
                         break;
+
+                    case R.id.nav_logout:
+                        Toast.makeText(MainActivity.this, "Logout Clicked", Toast.LENGTH_SHORT).show();
+                        return true;
+
                     case R.id.nav_about_us:
                         // launch new intent instead of loading fragment
 //                        startActivity(new Intent(MainActivity.this, WebviewActivity.class));
@@ -388,7 +397,9 @@ public class MainActivity extends BaseActivity {
         actionBarDrawerToggle.syncState();
 
         CoordinatorLayout contentView = findViewById(R.id.contentView);
-        drawer.setScrimColor(getResources().getColor(R.color.colorPrimary));
+        drawer.setDrawerShadow(R.color.white, GravityCompat.START);
+        drawer.setScrimColor(getResources().getColor(R.color.transparent)); // remove shadow above contentView
+        drawer.setDrawerElevation(0); // remove right side line
         drawer.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -403,6 +414,15 @@ public class MainActivity extends BaseActivity {
                 final Float xOffsetDiff = contentView.getWidth() * diffScaleFloat / 2;
                 final Float xTranslation = xOffset - xOffsetDiff;
                 contentView.setTranslationX(xTranslation);
+
+
+//                GradientDrawable shape = new GradientDrawable();
+//                shape.setShape(GradientDrawable.RECTANGLE);
+//                shape.setColor(Color.WHITE);
+////                shape.setCornerRadii(new float[] { 40, 40, 40, 40, 0, 0, 0, 0 });
+//                shape.setCornerRadius(40f);
+//                contentView.setBackground(shape);
+
 
             }
         });

@@ -28,7 +28,28 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+    </style>
 
+
+    <style name="NavigationDrawerStyle">
+
+        <item name="android:textSize">12sp</item><!-- text size in menu-->
+        <item name="android:textAppearance">@style/CustomTextAppearance</item><!-- text font in menu-->
+        <item name="android:listDivider">@color/colorPrimary</item>
+        <item name="divider">@color/colorPrimary</item>
+        <item name="android:dividerHeight">0dp</item>
+
+<!--        &lt;!&ndash;         item size in menu&ndash;&gt;-->
+<!--        <item name="android:listPreferredItemHeightSmall">40dp</item>-->
+<!--        <item name="listPreferredItemHeightSmall">40dp</item>-->
+
+        <!-- item padding left in menu-->
+        <item name="android:listPreferredItemPaddingLeft">35dp</item>
+        <item name="listPreferredItemPaddingLeft">35dp</item>
+
+        <!-- item padding right in menu-->
+        <item name="android:listPreferredItemPaddingRight">35dp</item>
+        <item name="listPreferredItemPaddingRight">35dp</item>
     </style>
 
 
@@ -42,14 +63,14 @@
     <style name="CustomTextAppearance.Medium" parent="CustomTextAppearance">
         <!-- Custom Attr-->
         <item name="fontPath">fonts/Poppins-Medium.ttf</item>
-<!--        <item name="android:textStyle">bold</item>-->
+        <!--        <item name="android:textStyle">bold</item>-->
     </style>
 
     <!--Custom bold text appearance-->
     <style name="CustomTextAppearance.Bold" parent="CustomTextAppearance">
         <!-- Custom Attr-->
         <item name="fontPath">fonts/Poppins-Medium.ttf</item>
-                <item name="android:textStyle">bold</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <!--Custom semibold text appearance-->

@@ -4,36 +4,47 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_dashboard"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/ic_icon_my_orders"
             android:title="@string/nav_dashboard" />
 
         <item
             android:id="@+id/nav_profile"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/ic_icon_my_profile"
             android:title="@string/nav_profile" />
+        <item
+            android:id="@+id/nav_receipt"
+            android:icon="@drawable/ic_payment_receipt"
+            android:title="@string/nav_receipt" />
 
         <item
-            android:id="@+id/nav_session"
-            android:icon="@mipmap/ic_launcher"
-            android:title="@string/nav_mysessions" />
-        <item
             android:id="@+id/nav_chat"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/ic_icon_contact"
             android:title="@string/nav_chat" />
 
         <item
-            android:id="@+id/nav_faq"
-            android:icon="@mipmap/ic_launcher"
-            android:title="@string/nav_faq" />
-        <item
-            android:id="@+id/nav_receipt"
-            android:icon="@mipmap/ic_launcher"
-            android:title="@string/nav_receipt" />
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_icon_log_out"
+            android:title="@string/nav_logout" />
+
+<!--        <item-->
+<!--            android:id="@+id/nav_faq"-->
+<!--            android:icon="@drawable/ic_icon_contact"-->
+<!--            android:title="@string/nav_faq" />-->
+
+<!--        <item-->
+<!--            android:id="@+id/nav_session"-->
+<!--            android:icon="@drawable/ic_icon_contact"-->
+<!--            android:title="@string/nav_mysessions" />-->
+
 
     </group>
 
     <item android:title="">
         <menu>
+            <item
+                android:title="" />
+            <item
+                android:title="" />
             <item
                 android:id="@+id/nav_about_us"
                 android:title="@string/nav_about_us" />
