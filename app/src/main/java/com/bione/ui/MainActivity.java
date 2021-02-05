@@ -114,6 +114,7 @@ public class MainActivity extends BaseActivity {
 
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
         Log.d("getHeaderCount", "------" + navigationView.getHeaderCount());
