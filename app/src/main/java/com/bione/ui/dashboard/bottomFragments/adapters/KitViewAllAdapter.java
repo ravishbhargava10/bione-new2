@@ -1,4 +1,4 @@
-package com.bione.ui.home.bottomFragments.adapters;
+package com.bione.ui.dashboard.bottomFragments.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

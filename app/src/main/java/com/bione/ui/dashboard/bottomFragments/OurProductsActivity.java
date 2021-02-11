@@ -1,88 +1,33 @@
-package com.bione.ui.home.bottomFragments;
+package com.bione.ui.dashboard.bottomFragments;
 
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
 import com.bione.model.CrouselData;
-import com.bione.ui.base.BaseFragment;
-import com.bione.ui.home.bottomFragments.adapters.KitDetailsAdapter;
-import com.bione.utils.CustomTypefaceSpan;
+import com.bione.ui.base.BaseActivity;
+
+import com.bione.ui.dashboard.bottomFragments.adapters.KitViewAllAdapter;
 
 import java.util.ArrayList;
 
-
-public class HomeFragment extends BaseFragment {
-
-    private View rootView;
-    private String text = "Hello";
-    private AppCompatTextView tvHeading;
-    private AppCompatTextView tvHead;
-    private AppCompatTextView tvViewAll;
-    private AppCompatTextView tvBoldText;
-    private AppCompatImageView ivHead;
+public class OurProductsActivity extends BaseActivity {
 
     private ArrayList<CrouselData> crouselDataArrayList;
     private RecyclerView recyclerViewCarousel;
-    private Context mContext;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mContext = context;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_viewall);
 
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_home, container, false);
-            tvHeading = rootView.findViewById(R.id.tvHeading);
-            ivHead = rootView.findViewById(R.id.ivHead);
-            tvHead = rootView.findViewById(R.id.tvHead);
-            tvViewAll = rootView.findViewById(R.id.tvViewAll);
-            tvBoldText = rootView.findViewById(R.id.tvBoldText);
-
-
-            tvViewAll.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity( new Intent(mContext, OurProductsActivity.class));
-                }
-            });
-
-           setHeadText();
-           setArrayList();
-           onSetRecyclerView();
-        }
-        return rootView;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
+        setArrayList();
+        onSetRecyclerView();
     }
 
     @Override
@@ -90,26 +35,13 @@ public class HomeFragment extends BaseFragment {
 
     }
 
-    private void setHeadText(){
-        String name = "John";
-        String first = "Hi " + name + " \n";
-        String second = "We understand how \npriceless your health is!";
-        Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Poppins-Regular.ttf");
-        Typeface font2 = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Poppins-Bold.ttf");
-        tvHead.setText(first + second);
-        SpannableStringBuilder SS = new SpannableStringBuilder(tvHead.getText().toString());
-        SS.setSpan(new CustomTypefaceSpan("", font), 0, tvHead.getText().toString().length() - 27, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-        SS.setSpan(new CustomTypefaceSpan("", font2), tvHead.getText().toString().length() - 27, tvHead.getText().toString().length(), Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-        tvHead.setText(SS);
-    }
-
     private void onSetRecyclerView() {
-        recyclerViewCarousel = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        LinearLayoutManager linearLayoutManager=
-                new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewCarousel = (RecyclerView) findViewById(R.id.recycler_view);
+        LinearLayoutManager linearLayoutManager =
+                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerViewCarousel.setLayoutManager(linearLayoutManager);
 
-        recyclerViewCarousel.setAdapter(new KitDetailsAdapter(mContext, crouselDataArrayList, 0));
+        recyclerViewCarousel.setAdapter(new KitViewAllAdapter(this, crouselDataArrayList, 0));
         // Scroll to the position we want to snap to
 //        linearLayoutManager.scrollToPosition(1);
         // Wait until the RecyclerView is laid out.
@@ -126,6 +58,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
     }
+
     private void setArrayList() {
         crouselDataArrayList = new ArrayList<>();
 
@@ -215,4 +148,3 @@ public class HomeFragment extends BaseFragment {
 //        crouselDataArrayList.add(data6);   //empty
     }
 }
-

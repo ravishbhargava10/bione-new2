@@ -1,24 +1,21 @@
 package com.bione.ui;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
 import com.bione.R;
 import com.bione.ui.base.BaseActivity;
 
-import com.bione.ui.home.ChatFragment;
-import com.bione.ui.home.fragments.CustomerReceiptFragment;
-import com.bione.ui.home.FaqFragment;
-import com.bione.ui.home.DashBoardFragment;
-import com.bione.ui.home.MyCounsellingFragment;
-import com.bione.ui.home.ProfileFragment;
-import com.bione.ui.home.WebviewActivity;
+import com.bione.ui.dashboard.ChatFragment;
+import com.bione.ui.dashboard.paymentreceipt.PaymentReceiptFragment;
+import com.bione.ui.dashboard.FaqFragment;
+import com.bione.ui.dashboard.DashBoardFragment;
+import com.bione.ui.dashboard.MyCounsellingFragment;
+import com.bione.ui.dashboard.ProfileFragment;
+import com.bione.ui.dashboard.WebviewActivity;
 import com.bione.utils.Log;
 import com.google.android.material.navigation.NavigationView;
 import com.special.ResideMenu.ResideMenu;
-import com.special.ResideMenu.ResideMenuItem;
 
 import android.os.Handler;
 import android.view.Menu;
@@ -32,7 +29,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.GravityCompat;
-import androidx.core.view.MenuCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -253,9 +249,10 @@ public class MainActivity extends BaseActivity {
                 return profileFragment;
 
             case 2:
-                // Session fragment
-                MyCounsellingFragment sessionFragment = new MyCounsellingFragment();
-                return sessionFragment;
+
+                // Payment Receipt
+                PaymentReceiptFragment customerReceiptFragment = new PaymentReceiptFragment();
+                return customerReceiptFragment;
 
             case 3:
                 // CHAT fragment
@@ -271,8 +268,9 @@ public class MainActivity extends BaseActivity {
                 return faqFragment;
 
             case 5:
-                CustomerReceiptFragment customerReceiptFragment = new CustomerReceiptFragment();
-                return customerReceiptFragment;
+                // Session fragment
+                MyCounsellingFragment sessionFragment = new MyCounsellingFragment();
+                return sessionFragment;
 //                Intent intent = new Intent(MainActivity.this, CustomerReceiptFragment.class);
 //                startActivity(intent);
 
@@ -415,16 +413,6 @@ public class MainActivity extends BaseActivity {
                 final Float xOffsetDiff = contentView.getWidth() * diffScaleFloat / 2;
                 final Float xTranslation = xOffset - xOffsetDiff;
                 contentView.setTranslationX(xTranslation);
-
-
-//                GradientDrawable shape = new GradientDrawable();
-//                shape.setShape(GradientDrawable.RECTANGLE);
-//                shape.setColor(Color.WHITE);
-////                shape.setCornerRadii(new float[] { 40, 40, 40, 40, 0, 0, 0, 0 });
-//                shape.setCornerRadius(40f);
-//                contentView.setBackground(shape);
-
-
             }
         });
     }
@@ -456,42 +444,4 @@ public class MainActivity extends BaseActivity {
     public void onClick(View view) {
 
     }
-
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent ev) {
-//        return resideMenu.dispatchTouchEvent(ev);
-//    }
-
-    private void setResideMenu() {
-        resideMenu = new ResideMenu(this);
-        resideMenu.setBackground(R.color.colorPrimary);
-        resideMenu.attachToActivity(this);
-        resideMenu.setScaleValue(0.6f);
-        resideMenu.setShadowVisible(false);
-
-        // create menu items;
-        String titles[] = {"Home", "Profile", "Calendar", "Settings"};
-        int icon[] = {R.drawable.ic_close, R.drawable.ic_button_next_light, R.drawable.ic_login_next, R.drawable.ic_facebook};
-
-        for (int i = 0; i < titles.length; i++) {
-            ResideMenuItem item = new ResideMenuItem(this, icon[i], titles[i]);
-            item.setOnClickListener(this);
-            resideMenu.addMenuItem(item, ResideMenu.DIRECTION_LEFT); // or  ResideMenu.DIRECTION_RIGHT
-        }
-
-        resideMenu.setMenuListener(new ResideMenu.OnMenuListener() {
-            @Override
-            public void openMenu() {
-                Toast.makeText(getApplicationContext(), "Menu is opened!", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void closeMenu() {
-                Toast.makeText(getApplicationContext(), "Menu is closed!", Toast.LENGTH_SHORT).show();
-            }
-        });
-        resideMenu.setSwipeDirectionDisable(ResideMenu.DIRECTION_RIGHT);
-    }
-
-
 }

@@ -1,4 +1,4 @@
-package com.bione.ui.home.bottomFragments;
+package com.bione.ui.dashboard;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import com.bione.R;
 import com.bione.ui.base.BaseFragment;
 
 
-public class SessionsFragment extends BaseFragment {
+public class FaqFragment extends BaseFragment {
 
     private View rootView;
     private String text = "Hello";
@@ -41,7 +41,7 @@ public class SessionsFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_session, container, false);
+            rootView = inflater.inflate(R.layout.fragment_faq, container, false);
             tvHeading = rootView.findViewById(R.id.tvHeading);
             ivHead = rootView.findViewById(R.id.ivHead);
             tvChat = rootView.findViewById(R.id.tvChat);

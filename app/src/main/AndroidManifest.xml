@@ -52,11 +52,11 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".ui.home.bottomFragments.OurProductsActivity"
+            android:name=".ui.dashboard.bottomFragments.OurProductsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".ui.home.WebviewActivity"
+            android:name=".ui.dashboard.WebviewActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 

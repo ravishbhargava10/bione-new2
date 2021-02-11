@@ -109,10 +109,15 @@
         <item>Chat with us</item>
         <item>FAQ\'s</item>
         <item>Payment Receipt</item>
-
-
     </string-array>
 
+    <string-array name="payment_modes">
+        <item>Payment Mode</item>
+        <item>Cash</item>
+        <item>Cheque</item>
+        <item>Bank Transfer</item>
+        <item>Wallet Payment</item>
+    </string-array>
 
     <!-- splash text -->
     <string name="splash_text">We are <b>Asia\'s 1st</b> direct-to-consumer \nmicrobiome and genetic testing organisation</string>

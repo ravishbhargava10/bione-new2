@@ -1,4 +1,4 @@
-package com.bione.ui.home;
+package com.bione.ui.dashboard;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,9 +16,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bione.R;
 import com.bione.ui.base.BaseFragment;
-import com.bione.ui.home.bottomFragments.HomeFragment;
-import com.bione.ui.home.bottomFragments.MyReportFragment;
-import com.bione.ui.home.bottomFragments.SessionsFragment;
+import com.bione.ui.dashboard.bottomFragments.HomeFragment;
+import com.bione.ui.dashboard.bottomFragments.MyReportFragment;
+import com.bione.ui.dashboard.bottomFragments.SessionsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 

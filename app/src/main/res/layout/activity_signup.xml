@@ -29,147 +29,96 @@
                 android:textSize="@dimen/font_xxxlarge" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/textInputLayout"
                 android:layout_marginTop="@dimen/spacing_small"
-                android:hint="First Name"
-                android:textAppearance="@style/CustomTextAppearance">
+                android:hint="First Name">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:minHeight="@dimen/height_spacing_50"
-                    android:text=""
-                    android:textAppearance="@style/CustomTextAppearance.Medium" />
+                    android:id="@+id/etFirstName"
+                    style="@style/textInputEditText" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                <View style="@style/viewLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_tiny"
-                android:hint="Last Name"
-                android:textAppearance="@style/CustomTextAppearance">
+                style="@style/textInputLayout"
+                android:hint="Middle Name">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:minHeight="@dimen/height_spacing_50"
-                    android:text=""
-                    android:textAppearance="@style/CustomTextAppearance.Medium" />
+                    android:id="@+id/etMiddleName"
+                    style="@style/textInputEditText" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                <View style="@style/viewLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_tiny"
-                android:hint="Email Address"
-                android:textAppearance="@style/CustomTextAppearance">
+                style="@style/textInputLayout"
+                android:hint="Last Name">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:inputType="textEmailAddress"
-                    android:minHeight="@dimen/height_spacing_50"
-                    android:text=""
-                    android:textAppearance="@style/CustomTextAppearance.Medium" />
+                    android:id="@+id/etLastName"
+                    style="@style/textInputEditText" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                <View style="@style/viewLine" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/textInputLayout"
+                android:hint="Email Address">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    style="@style/textInputEditText"
+                    android:inputType="textEmailAddress" />
+
+                <View style="@style/viewLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_tiny"
+                style="@style/textInputLayout"
                 android:hint="Password"
-                android:textAppearance="@style/CustomTextAppearance"
                 android:textColorHint="#797b7f"
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:inputType="textPassword"
-                    android:text=""
-                    android:textAppearance="@style/CustomTextAppearance.Medium" />
+                    android:id="@+id/etPassword"
+                    style="@style/textInputEditText"
+                    android:inputType="textPassword" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                <View style="@style/viewLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_tiny"
+                style="@style/textInputLayout"
                 android:hint="Confirm Password"
-                android:textAppearance="@style/CustomTextAppearance"
                 android:textColorHint="#797b7f"
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:inputType="textPassword"
-                    android:text=""
-                    android:textAppearance="@style/CustomTextAppearance.Medium" />
+                    android:id="@+id/etConfirmPassword"
+                    style="@style/textInputEditText"
+                    android:inputType="textPassword" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                <View style="@style/viewLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_tiny"
-                android:hint="Phone Number"
-                android:textAppearance="@style/CustomTextAppearance">
+                style="@style/textInputLayout"
+                android:hint="Phone Number">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:maxLength="10"
-                    android:minHeight="@dimen/height_spacing_50"
-                    android:text=""
-                    android:textAppearance="@style/CustomTextAppearance.Medium" />
+                    android:id="@+id/etPhone"
+                    style="@style/textInputEditText"
+                    android:maxLength="10" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                <View style="@style/viewLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -189,26 +138,17 @@
                 android:textSize="@dimen/font_large" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_tiny"
-                android:hint="Enter OTP here"
-                android:textAppearance="@style/CustomTextAppearance">
+                android:id="@+id/layoutOtp"
+                style="@style/textInputLayout"
+                android:visibility="gone"
+                android:hint="Enter OTP here">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:maxLength="10"
-                    android:minHeight="@dimen/height_spacing_50"
-                    android:text=""
-                    android:textAppearance="@style/CustomTextAppearance.Medium" />
+                    android:id="@+id/etOtp"
+                    style="@style/textInputEditText"
+                    android:visibility="visible" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/gray" />
+                <View style="@style/viewLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -250,7 +190,7 @@
                 android:elevation="5dp"
                 android:gravity="center"
                 android:padding="@dimen/spacing_small"
-                android:text="Sign Up"
+                android:text="Verify &amp; Register"
                 android:textAllCaps="true"
                 android:textAppearance="@style/CustomTextAppearance.Bold"
                 android:textColor="@color/white"

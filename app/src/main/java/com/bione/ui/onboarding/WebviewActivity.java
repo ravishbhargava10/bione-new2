@@ -1,4 +1,4 @@
-package com.bione.ui.home;
+package com.bione.ui.onboarding;
 
 import android.os.Bundle;
 import android.view.View;

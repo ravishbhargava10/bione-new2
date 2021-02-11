@@ -1,4 +1,4 @@
-package com.bione.ui.home.bottomFragments;
+package com.bione.ui.dashboard.bottomFragments;
 
 import android.content.Context;
 import android.os.Bundle;

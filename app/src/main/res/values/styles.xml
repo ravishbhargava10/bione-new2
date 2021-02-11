@@ -94,4 +94,30 @@
         <item name="android:textAppearance">@style/CustomTextAppearance</item>
         <item name="android:textSize">@dimen/font_small</item>
     </style>
+
+    <style name="textInputLayout" parent="Widget.Design.TextInputLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/spacing_tiny</item>
+        <item name="android:textAppearance">@style/CustomTextAppearance</item>
+    </style>
+    <style name="textInputEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:minHeight">@dimen/height_spacing_50</item>
+        <item name="android:textAppearance">@style/CustomTextAppearance.Medium</item>
+    </style>
+    <style name="viewLine" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/gray</item>
+    </style>
+
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:background="@color/white"-->
+<!--    android:minHeight="@dimen/height_spacing_50"-->
+<!--    android:text=""-->
+<!--    android:textAppearance="@style/CustomTextAppearance.Medium"-->
 </resources>
