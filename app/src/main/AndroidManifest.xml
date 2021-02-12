@@ -55,8 +55,14 @@
             android:name=".ui.dashboard.bottomFragments.OurProductsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+
         <activity
-            android:name=".ui.dashboard.WebviewActivity"
+            android:name=".ui.dashboard.paymentreceipt.PaymentReceiptViewActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity
+            android:name=".ui.onboarding.WebviewActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 

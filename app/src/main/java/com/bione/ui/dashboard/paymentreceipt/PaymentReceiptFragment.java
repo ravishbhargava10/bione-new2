@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -41,32 +42,30 @@ import java.util.Calendar;
 public class PaymentReceiptFragment extends BaseFragment {
 
 
+    private static StringBuilder selectedTests = new StringBuilder();
+    //    private static TextInputEditText etTestName;
+    private static AppCompatTextView etTestName;
+    private AppCompatTextView etDate;
     private TextInputEditText etFirstName;
     private TextInputEditText etLastName;
-    private static TextInputEditText etTestName;
-    private TextInputEditText etTestAmount;
     private TextInputEditText etAmountNumber;
     private TextInputEditText etSalesPerson;
     private TextInputEditText etTotalAmount;
     private TextInputEditText etPaymentMode;
-    private TextInputEditText etRemarks;
     private TextInputEditText etBalanceAmount;
-    private TextInputEditText etDate;
+    private TextInputEditText etRemarks;
+    private TextInputEditText etTestAmount;
+
 
     private TextInputLayout layoutBalanceAmount;
     private TextInputLayout layoutTestNames;
     private TextInputLayout layoutDate;
 
-
     private AppCompatTextView tvSubmit;
-
-
     private RadioGroup radioGroup;
-    private String radioText = "";
-    //    private MultiSelectionSpinner spinner;
-    private Spinner spinner2;
-    private static StringBuilder selectedTests = new StringBuilder();
 
+    private String radioText = "";
+    private Spinner spinner2;
     private int enteredValue = 0;
     private int actualAmount = 0;
 
@@ -92,9 +91,8 @@ public class PaymentReceiptFragment extends BaseFragment {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_payment_receipt, container, false);
 
-//        setContentView(R.layout.activty_customer_receipt);
             init();
-//            setMultiSpinner();
+
             setRadio();
             setSpinner();
             etSalesPerson.setText(CommonData.getUserData().getFirstname());
@@ -128,12 +126,11 @@ public class PaymentReceiptFragment extends BaseFragment {
 
     private void setSpinner() {
         spinner2 = rootView.findViewById(R.id.spinner);
-//        spinner2 = findViewById(R.id.spinner);
+
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext,
                 R.array.payment_modes, android.R.layout.simple_spinner_item);
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//                R.array.payment_modes, android.R.layout.simple_spinner_item);
+
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
@@ -161,6 +158,8 @@ public class PaymentReceiptFragment extends BaseFragment {
         layoutTestNames = rootView.findViewById(R.id.layoutTestNames);
         layoutDate = rootView.findViewById(R.id.layoutDate);
 
+        etTestName.setOnClickListener(this);
+        etDate.setOnClickListener(this);
         tvSubmit.setOnClickListener(this);
         layoutDate.setOnClickListener(this);
         layoutTestNames.setOnClickListener(this);
@@ -186,11 +185,8 @@ public class PaymentReceiptFragment extends BaseFragment {
                         layoutBalanceAmount.setVisibility(View.VISIBLE);
                         break;
                 }
-//                int id = group.getCheckedRadioButtonId();
-//                RadioButton rb = rootView.findViewById(id);
-//                radioText = rb.getText().toString();
+
                 RadioButton rb = rootView.findViewById(checkedId);
-//                RadioButton rb = findViewById(checkedId);
                 radioText = rb.getText().toString();
                 if (radioText.contains("Full")) {
                     radioText = "Full Amount";
@@ -201,16 +197,12 @@ public class PaymentReceiptFragment extends BaseFragment {
         });
     }
 
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//
-//    }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
 
+            case R.id.etDate:
             case R.id.layoutDate:
                 setDate();
                 break;
@@ -320,6 +312,7 @@ public class PaymentReceiptFragment extends BaseFragment {
                 .add("payment_mode", "" + spinner2.getSelectedItem().toString())
                 .add("remarks", "" + etRemarks.getText().toString())
                 .add("sales_person", CommonData.getUserData().getFirstname() + " " + CommonData.getUserData().getLastname())
+                .add("report_manager_email", "vipin@bione.in")
 //                .add("report_manager_email", "" + CommonData.getSalesData().getReportingManagerEmailId())
                 .build();
 
@@ -327,16 +320,15 @@ public class PaymentReceiptFragment extends BaseFragment {
             @Override
             public void onSuccess(PaymentReceipt commonResponse) {
                 Log.d("onSuccess", "" + commonResponse);
-//                showErrorMessage(commonResponse.getReceiptUrl());
+
                 clearData();
                 String link = commonResponse.getReceiptUrl();
                 link = link.replaceAll("\\/", "/");
                 Log.d("link", "after slash removed------ " + link);
-//                link = "http://docs.google.com/gview?embedded=true&url=" +link ;
-//                Log.d("link", "after url embedded removed------ " + link);
-//                Intent intent = new Intent(mContext, PaymentReceiptViewActivity.class);
-//                intent.putExtra("link", link);
-//                startActivity(intent);
+
+                Intent intent = new Intent(mContext, PaymentReceiptViewActivity.class);
+                intent.putExtra("link", link);
+                startActivity(intent);
             }
 
             @Override

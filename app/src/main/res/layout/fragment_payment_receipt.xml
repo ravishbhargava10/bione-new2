@@ -56,17 +56,40 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutTestNames"
                 style="@style/textInputLayout"
-                android:hint="Test Name">
+                android:visibility="visible">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/etTestName"
                     style="@style/textInputEditText"
-                    android:editable="false"
+                    android:hint="Test Name"
                     android:drawableRight="@drawable/ic_down_primary" />
 
                 <View style="@style/viewLine" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutTest"
+                style="@style/textInputLayout"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/etTestHeading"
+                    style="@style/textInputEditText"
+                    android:hint="Test Names"
+                    android:drawableRight="@drawable/ic_down_primary" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/etTestList"
+                    style="@style/textInputEditText"
+                    android:text="bione x6 bione x6 bione x6 bione x6 bione x6"
+                    android:visibility="gone"
+                    android:drawableRight="@drawable/ic_down_primary" />
+
+                <View style="@style/viewLine" />
+
+            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/textInputLayout"
@@ -151,12 +174,14 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPaymentMode"
+                    android:visibility="gone"
                     style="@style/textInputEditText"
                     android:drawableRight="@drawable/ic_down_primary" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner"
                     style="@style/textInputEditText"
+                    android:drawableRight="@drawable/ic_down_primary"
                     android:background="@color/white" />
 
                 <View style="@style/viewLine" />
@@ -192,13 +217,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutDate"
-                style="@style/textInputLayout"
-                android:hint="Balance Amount will be paid on date">
+                style="@style/textInputLayout">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/etDate"
                     style="@style/textInputEditText"
-                    android:editable="false"
+                    android:hint="Balance Amount will be paid on date"
                     android:drawableRight="@drawable/ic_calendar" />
 
                 <View style="@style/viewLine" />

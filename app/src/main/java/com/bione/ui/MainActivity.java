@@ -1,9 +1,19 @@
 package com.bione.ui;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.bione.R;
+import com.bione.db.CommonData;
+import com.bione.model.CommonResponse;
+import com.bione.model.customerdata.Customer;
+import com.bione.model.salesdetail.Data;
+import com.bione.model.salesdetail.SalesDetail;
+import com.bione.network.ApiError;
+import com.bione.network.CommonParams;
+import com.bione.network.ResponseResolver;
+import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 
 import com.bione.ui.dashboard.ChatFragment;
@@ -12,7 +22,7 @@ import com.bione.ui.dashboard.FaqFragment;
 import com.bione.ui.dashboard.DashBoardFragment;
 import com.bione.ui.dashboard.MyCounsellingFragment;
 import com.bione.ui.dashboard.ProfileFragment;
-import com.bione.ui.dashboard.WebviewActivity;
+import com.bione.ui.onboarding.WebviewActivity;
 import com.bione.utils.Log;
 import com.google.android.material.navigation.NavigationView;
 import com.special.ResideMenu.ResideMenu;
@@ -22,16 +32,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import java.util.List;
+
+import static com.bione.utils.AppConstant.PARAM_CUSTOMERID;
+import static com.bione.utils.AppConstant.PARAM_EMAIL;
+import static com.bione.utils.AppConstant.PARAM_MOBILE;
+import static com.bione.utils.AppConstant.PARAM_OTP;
 
 public class MainActivity extends BaseActivity {
 
@@ -67,6 +87,10 @@ public class MainActivity extends BaseActivity {
     private String category = "";
 
     private ResideMenu resideMenu;
+
+    private Dialog dialog;
+    private LinearLayout topView;
+    private LinearLayout bottomView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,12 +154,12 @@ public class MainActivity extends BaseActivity {
         loadNavHeader();
 
         // Logic for mobilenumber verification
-//        if (CommonData.getUserData().getMobilenumber() == null || CommonData.getUserData().getMobilenumber().equals("")) {
-//            openDialog();
-//        }
+        if (CommonData.getUserData().getMobilenumber() == null || CommonData.getUserData().getMobilenumber().equals("")) {
+            openDialog();
+        }
 
         //logic for sales person screen
-//        isSalesPerson();
+        isSalesPerson();
 
         // initializing navigation menu
         setUpNavigationView();
@@ -344,12 +368,16 @@ public class MainActivity extends BaseActivity {
 
                     case R.id.nav_about_us:
                         // launch new intent instead of loading fragment
-//                        startActivity(new Intent(MainActivity.this, WebviewActivity.class));
-//                        drawer.closeDrawers();
-//                        return true;
+                        Intent intent = new Intent(MainActivity.this, WebviewActivity.class);
+                        intent.putExtra("link", "https://www.bione.in/terms-of-service");
+                        startActivity(intent);
+                        drawer.closeDrawers();
+                        return true;
                     case R.id.nav_privacy_policy:
                         // launch new intent instead of loading fragment
-                        startActivity(new Intent(MainActivity.this, WebviewActivity.class));
+                        Intent intent2 = new Intent(MainActivity.this, WebviewActivity.class);
+                        intent2.putExtra("link", "https://www.bione.in/privacy-policy");
+                        startActivity(intent2);
                         drawer.closeDrawers();
                         return true;
 
@@ -443,5 +471,139 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onClick(View view) {
 
+    }
+
+    private void openDialog() {
+        // custom dialog
+//        final Dialog dialog = new Dialog(this);
+        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_otp_common);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setCancelable(false);
+        dialog.setTitle("Title...");
+
+        // set the custom dialog components - text, image and button
+        topView = dialog.findViewById(R.id.topView);
+        bottomView = dialog.findViewById(R.id.bottomView);
+
+        AppCompatEditText etPhoneNumber = dialog.findViewById(R.id.etPhoneNumber);
+        AppCompatEditText etOtp = dialog.findViewById(R.id.etOtp);
+        AppCompatTextView tvOtp = dialog.findViewById(R.id.tvOtp);
+
+        AppCompatTextView tvSendOtp = dialog.findViewById(R.id.tvSendOtp);
+        AppCompatTextView tvVerify = dialog.findViewById(R.id.tvVerify);
+
+        topView.setVisibility(View.VISIBLE);
+        bottomView.setVisibility(View.GONE);
+
+        // if button is clicked, close the custom dialog
+        tvSendOtp.setOnClickListener(v -> callVerifyMobile(etPhoneNumber.getText().toString(), false));
+
+        // if button is clicked, close the custom dialog
+        tvVerify.setOnClickListener(v -> callVerifyOtp(etPhoneNumber.getText().toString(), etOtp.getText().toString()));
+
+        dialog.show();
+    }
+
+    public void callVerifyMobile(final String phoneNumber, final boolean resend) {
+        showLoading();
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add(PARAM_MOBILE, "91" + phoneNumber).build();
+
+        RestClient.getApiInterface().sendOtpRegister(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
+            @Override
+            public void onSuccess(List<CommonResponse> commonResponse) {
+                Log.d("onSuccess", "" + commonResponse);
+                if (commonResponse.get(0).getStatusCode().equals("200")) {
+                    topView.setVisibility(View.GONE);
+                    bottomView.setVisibility(View.VISIBLE);
+                } else {
+                    showErrorMessage(commonResponse.get(0).getMessage());
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+    }
+
+    public void callVerifyOtp(final String phoneNumber, final String otp) {
+        showLoading();
+        final CommonParams commonParams = new CommonParams.Builder()
+//                .add(PARAM_MOBILE, "" + phoneNumber).build();
+                .add(PARAM_MOBILE, "91" + phoneNumber)
+                .add(PARAM_CUSTOMERID, CommonData.getUserData().getEntityId())
+                .add(PARAM_OTP, otp)
+                .build();
+
+        RestClient.getApiInterface().verifyMobile(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
+            @Override
+            public void onSuccess(List<CommonResponse> commonResponse) {
+                Log.d("onSuccess", "" + commonResponse);
+                if (commonResponse.get(0).getStatusCode().equals("200")) {
+                    Customer customer = CommonData.getUserData();
+                    customer.setMobilenumber("91" + phoneNumber);
+                    CommonData.saveUserData(customer);
+                    dialog.dismiss();
+                } else {
+                    showErrorMessage(commonResponse.get(0).getMessage());
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+    }
+
+
+    public void isSalesPerson() {
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add(PARAM_EMAIL, CommonData.getUserData().getEmail())
+                .build();
+
+        RestClient.getApiInterface().isSalesPerson(commonParams.getMap()).enqueue(new ResponseResolver<List<SalesDetail>>() {
+            @Override
+            public void onSuccess(List<SalesDetail> commonResponse) {
+                Log.d("onSuccess", "" + commonResponse);
+                if (commonResponse.get(0).getCode() == 200) {
+                    hideShowItem(true);
+                    CommonData.saveSalesData(commonResponse.get(0).toResponseModel(Data.class));
+                } else {
+                    hideShowItem(false);
+                }
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+                hideShowItem(false);
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+                hideShowItem(false);
+            }
+        });
     }
 }

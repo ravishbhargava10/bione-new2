@@ -1,6 +1,7 @@
 package com.bione.db;
 
 import com.bione.model.customerdata.Customer;
+import com.bione.model.salesdetail.Data;
 import com.kbeanie.multipicker.api.entity.ChosenImage;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public final class CommonData {
     private static final String PAPER_LOGIN_DATA = "paper_login_data";
     private static final String PAPER_USER_DATA = "paper_user_data";
     private static final String PAPER_USER_PHOTO = "paper_user_photo";
+    private static final String PAPER_SALES_PERSON_DATA = "paper_sales_person_data";
 
 
     /**
@@ -85,6 +87,31 @@ public final class CommonData {
     public static String getAdminToken() {
         return Paper.book().read(PAPER_ADMIN_TOKEN);
     }
+
+
+
+    /**
+     * Get sales data sales data.
+     *
+     * @return the sales data
+     */
+    public static Data getSalesData() {
+        return Paper.book().read(PAPER_SALES_PERSON_DATA);
+    }
+    /**
+     * Save sales data.
+     *
+     * @param mSalesData the m sales data
+     */
+    public static void saveSalesData(final Data mSalesData) {
+        if (mSalesData == null) {
+            return;
+        }
+
+        Paper.book().write(PAPER_SALES_PERSON_DATA, mSalesData);
+    }
+
+
 
     /**
      * Update customer token.

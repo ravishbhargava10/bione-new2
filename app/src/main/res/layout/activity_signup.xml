@@ -111,6 +111,10 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/textInputLayout"
+                android:baselineAligned="true"
+                app:boxStrokeWidth="1dp"
+                app:boxStrokeColor="@color/colorPrimary"
+                app:helperText="Mobile Number without country code i.e 9987654321"
                 android:hint="Phone Number">
 
                 <com.google.android.material.textfield.TextInputEditText
