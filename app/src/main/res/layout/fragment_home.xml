@@ -37,9 +37,9 @@
                 android:visibility="gone" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/in_process" />
+                app:srcCompat="@drawable/group_3" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

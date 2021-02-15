@@ -276,6 +276,7 @@ public class MainActivity extends BaseActivity {
 
                 // Payment Receipt
                 PaymentReceiptFragment customerReceiptFragment = new PaymentReceiptFragment();
+//                PaymentReceiptFragment customerReceiptFragment = new PaymentReceiptFragment();
                 return customerReceiptFragment;
 
             case 3:
@@ -587,7 +588,8 @@ public class MainActivity extends BaseActivity {
                     hideShowItem(true);
                     CommonData.saveSalesData(commonResponse.get(0).toResponseModel(Data.class));
                 } else {
-                    hideShowItem(false);
+//                    hideShowItem(false);
+                    hideShowItem(true);
                 }
             }
 

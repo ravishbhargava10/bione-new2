@@ -7,6 +7,7 @@ import com.bione.model.availableSlots.Slot;
 import com.bione.model.counsellors.Counselling;
 import com.bione.model.customerdata.SignInDatum;
 import com.bione.model.customerkit.CustomerKit;
+import com.bione.model.paymentreceiptlist.ReceiptList;
 import com.bione.model.salesdetail.SalesDetail;
 import com.bione.model.updateprofile.UpdateProfile;
 
@@ -138,6 +139,16 @@ public interface ApiInterface {
      */
     @POST("/rest//V1/customers")
     Call<UpdateProfile> createAccount(@Body RequestBody json);
+
+
+    /**
+     *
+     * @param map
+     * @return
+     */
+    @GET("/api/Receiptlist")
+    Call<ReceiptList> paymentReceiptList(@QueryMap Map<String, String> map);
+
 
 
     /**
