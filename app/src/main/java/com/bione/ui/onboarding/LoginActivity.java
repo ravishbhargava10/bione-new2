@@ -459,7 +459,7 @@ public class LoginActivity extends BaseActivity {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
 //                .add(PARAM_MOBILE, "" + phoneNumber).build();
-                .add(PARAM_MOBILE, "91" + phoneNumber).build();
+                .add(PARAM_MOBILE, "" + phoneNumber).build();
 
         RestClient.getApiInterface().sendOtp(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
             @Override
@@ -470,8 +470,9 @@ public class LoginActivity extends BaseActivity {
                         showErrorMessage(commonResponse.get(0).getMessage());
                     } else {
 //                        openDialog();
-//                        etOtp.setVisibility(View.VISIBLE);
+
                         tvLogin.setText("Log in");
+                        etOtp.setVisibility(View.VISIBLE);
                     }
                 } else {
                     showErrorMessage(commonResponse.get(0).getMessage());

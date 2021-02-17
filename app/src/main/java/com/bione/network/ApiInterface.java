@@ -116,6 +116,20 @@ public interface ApiInterface {
     @GET("/rest/V1/bioneapi/kitorderlist")
     Call<List<CustomerKit>> kitOrders(@QueryMap Map<String, String> map);
 
+
+
+    @GET("/mobilelogin/index/ajaxforgot")
+    Call<String> forgotSendOtp(@QueryMap Map<String, String> map);
+
+    @GET("/mobilelogin/index/ajaxforgototpverify")
+    Call<Boolean> forgotVerifyOtp(@QueryMap Map<String, String> map);
+
+    @GET("/mobilelogin/index/ajaxupdatepassotp")
+    Call<Boolean> forgotPasswordUpdate(@QueryMap Map<String, String> map);
+
+
+
+
     /**
      * checkUnique call.
      *

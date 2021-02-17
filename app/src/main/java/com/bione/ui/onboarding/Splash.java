@@ -7,12 +7,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.util.Base64;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.bione.R;
 import com.bione.db.CommonData;
@@ -32,7 +30,7 @@ import static com.bione.utils.AppConstant.PARAM_PASSWORD;
 import static com.bione.utils.AppConstant.PARAM_USERNAME;
 
 
-public class SplashActivity extends BaseActivity {
+public class Splash extends BaseActivity {
 
 
     private Handler handler;
@@ -92,9 +90,9 @@ public class SplashActivity extends BaseActivity {
                 Log.d("admin ", "token :: " + CommonData.getAdminToken());
                 Intent intent;
                 if (CommonData.getUserData() != null) {
-                    intent = new Intent(SplashActivity.this, MainActivity.class);
+                    intent = new Intent(Splash.this, MainActivity.class);
                 } else {
-                    intent = new Intent(SplashActivity.this, WalkActivity.class);
+                    intent = new Intent(Splash.this, WalkActivity.class);
                 }
                 startActivity(intent);
                 finish();

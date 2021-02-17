@@ -58,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/drawable_border_bottom"
                     android:hint="1234"
+                    android:visibility="gone"
                     android:maxLength="4"
                     android:elevation="5dp"
                     android:textAppearance="@style/CustomTextAppearance"

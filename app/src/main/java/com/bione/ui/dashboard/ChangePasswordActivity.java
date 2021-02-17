@@ -16,6 +16,7 @@ import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 import com.bione.utils.Log;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,25 +24,46 @@ import org.json.JSONObject;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
+import static com.bione.utils.AppConstant.PARAM_CONFIRM_PASS;
+import static com.bione.utils.AppConstant.PARAM_MOBILE;
+import static com.bione.utils.AppConstant.PARAM_NEW_PASS;
+import static com.bione.utils.AppConstant.PARAM_OTP;
+
 public class ChangePasswordActivity extends BaseActivity {
 
     private AppCompatImageView ivClose;
     private AppCompatTextView tvSave;
+    private AppCompatTextView tvHead;
     private AppCompatEditText etCurrentPassword;
     private AppCompatEditText etNewPassword;
     private AppCompatEditText etConfirmPassword;
+    private TextInputLayout layoutCurrentPassword;
 
     private JSONObject jsonObject = new JSONObject();
     private String currentPassword = "";
     private String newPassword = "";
 
+    private boolean fromForgot = false; // changePassword/reset password logic
+    private String mobile = "";
+    private String otp = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {
+//            newString= null;
+        } else {
+            fromForgot = extras.getBoolean("fromForgot");
+            mobile = extras.getString("mobile");
+            otp = extras.getString("otp");
+        }
+
         init();
+
+
     }
 
     @Override
@@ -50,7 +72,11 @@ public class ChangePasswordActivity extends BaseActivity {
         switch (view.getId()) {
 
             case R.id.tvSave:
-
+                if (fromForgot) {
+                    validResetPassword();
+                } else {
+                    validChangePassword();
+                }
                 break;
 
             case R.id.ivClose:
@@ -63,12 +89,23 @@ public class ChangePasswordActivity extends BaseActivity {
 
         ivClose = findViewById(R.id.ivClose);
         tvSave = findViewById(R.id.tvSave);
+        tvHead = findViewById(R.id.tvHead);
+        layoutCurrentPassword = findViewById(R.id.layoutCurrentPassword);
         etCurrentPassword = findViewById(R.id.etCurrentPassword);
         etNewPassword = findViewById(R.id.etNewPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
 
         ivClose.setOnClickListener(this);
         tvSave.setOnClickListener(this);
+
+        // changepassword / reset password logic
+        if (fromForgot) {
+            tvHead.setText("Reset \npassword");
+            layoutCurrentPassword.setVisibility(View.GONE);
+        } else {
+            tvHead.setText("Change \npassword");
+            layoutCurrentPassword.setVisibility(View.VISIBLE);
+        }
     }
 
     private void validChangePassword() {
@@ -89,6 +126,25 @@ public class ChangePasswordActivity extends BaseActivity {
                     } else {
                         showErrorMessage("Password does not match");
                     }
+                }
+            }
+        }
+    }
+
+    private void validResetPassword() {
+
+        if (etNewPassword.getText().toString().equals("")) {
+            showErrorMessage("Please enter new password");
+        } else {
+            if (etConfirmPassword.getText().toString().equals("")) {
+                showErrorMessage("Please enter confirm password");
+            } else {
+                if (etConfirmPassword.getText().toString().equals(etNewPassword.getText().toString())) {
+                    currentPassword = etCurrentPassword.getText().toString();
+                    newPassword = etNewPassword.getText().toString();
+                    resetPasswordAPI();
+                } else {
+                    showErrorMessage("Password does not match");
                 }
             }
         }
@@ -161,5 +217,36 @@ public class ChangePasswordActivity extends BaseActivity {
 
         Log.d("jsonObject", "data :: " + jsonObject.toString());
 
+    }
+
+    private void resetPasswordAPI() {
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add(PARAM_MOBILE, mobile)
+                .add(PARAM_OTP, otp)
+                .add(PARAM_NEW_PASS, etNewPassword.getText().toString())
+                .add(PARAM_CONFIRM_PASS, etConfirmPassword.getText().toString())
+                .build();
+
+        Log.d("code ", "map :: " + commonParams.getMap());
+        RestClient.getApiInterface().forgotSendOtp(commonParams.getMap()).enqueue(new ResponseResolver<String>() {
+            @Override
+            public void onSuccess(String s) {
+
+                Log.d("String ", "Value :: " + s);
+
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
     }
 }

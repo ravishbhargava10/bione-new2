@@ -1,6 +1,7 @@
 package com.bione.ui.dashboard;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -142,6 +143,14 @@ public class ProfileFragment extends BaseFragment {
     public void onClick(View view) {
 
         switch (view.getId()) {
+
+            case R.id.relPassword:
+                Intent intent = new Intent(mContext, ChangePasswordActivity.class);
+                intent.putExtra("fromForgot", false);
+                intent.putExtra("mobile", "");
+                intent.putExtra("otp", "");
+                startActivity(intent);
+                break;
 
             case R.id.tvEditFirstName:
                 etFirstName.setEnabled(true);
@@ -358,7 +367,8 @@ public class ProfileFragment extends BaseFragment {
         try {
 
             customAttributeObject.put("attribute_code", "mobilenumber");
-            customAttributeObject.put("value", etPhone.getText().toString());
+            customAttributeObject.put("value", "" + etPhone.getText().toString());
+//            customAttributeObject.put("value", "91" + etPhone.getText().toString());
             customAttributeArray.put(customAttributeObject);
 
             customerObject.put("id", "" + CommonData.getUserData().getEntityId());
