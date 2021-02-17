@@ -24,6 +24,8 @@ import com.bione.ui.dashboard.MyCounsellingFragment;
 import com.bione.ui.dashboard.ProfileFragment;
 import com.bione.ui.onboarding.WebviewActivity;
 import com.bione.utils.Log;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.special.ResideMenu.ResideMenu;
 
@@ -46,6 +48,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.io.File;
 import java.util.List;
 
 import static com.bione.utils.AppConstant.PARAM_CUSTOMERID;
@@ -180,27 +183,27 @@ public class MainActivity extends BaseActivity {
      */
     private void loadNavHeader() {
 
-//        // name, phone
-//        Customer customer = CommonData.getUserData();
-//        if (customer.getFirstname() != null) {
-//            if (customer.getLastname() != null) {
-//                txtName.setText(customer.getFirstname() + " " + customer.getLastname());
-//            } else {
-//                txtName.setText(customer.getFirstname());
-//            }
-//        }
-//        if (customer.getMobilenumber() != null) {
-//            txtPhone.setText("+" + customer.getMobilenumber());
-//        }
-//
-//        if (CommonData.getUserPhoto() != null) {
-//            File photoFile = new File(CommonData.getUserPhoto().get(0).getThumbnailSmallPath());
-//
-//            Glide.with(getApplicationContext())
-//                    .load(photoFile)
-//                    .apply(RequestOptions.circleCropTransform())
-//                    .into(ivProfile);
-//        }
+        // name, phone
+        Customer customer = CommonData.getUserData();
+        if (customer.getFirstname() != null) {
+            if (customer.getLastname() != null) {
+                txtName.setText(customer.getFirstname() + " " + customer.getLastname());
+            } else {
+                txtName.setText(customer.getFirstname());
+            }
+        }
+        if (customer.getMobilenumber() != null) {
+            txtPhone.setText("+" + customer.getMobilenumber());
+        }
+
+        if (CommonData.getUserPhoto() != null) {
+            File photoFile = new File(CommonData.getUserPhoto().get(0).getThumbnailSmallPath());
+
+            Glide.with(getApplicationContext())
+                    .load(photoFile)
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(ivProfile);
+        }
 
 
     }

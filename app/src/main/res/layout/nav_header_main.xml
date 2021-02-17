@@ -21,7 +21,7 @@
             android:id="@+id/ivProfile"
             android:layout_width="@dimen/height_spacing_50"
             android:layout_height="@dimen/height_spacing_50"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:src="@drawable/ic_user_1" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,6 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="John Smith"
+                android:textSize="@dimen/font_normal"
                 android:textAppearance="@style/CustomTextAppearance.Bold"
                 android:textColor="@color/white" />
 
@@ -43,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="987654321"
+                android:textSize="@dimen/font_small"
                 android:textAppearance="@style/CustomTextAppearance"
                 android:textColor="@color/white" />
         </LinearLayout>
