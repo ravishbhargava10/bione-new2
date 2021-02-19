@@ -28,8 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_large"
-                android:textAppearance="@style/CustomTextAppearance"
                 android:text="Hey!\nThe first steps\nto healthy living"
+                android:textAppearance="@style/CustomTextAppearance"
                 android:textSize="@dimen/font_xxxlarge"
                 android:textStyle="bold" />
 
@@ -40,31 +40,45 @@
                 android:layout_marginTop="@dimen/spacing_normal"
                 android:orientation="vertical">
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etMobile"
+                <LinearLayout
+                    android:id="@+id/llCountryCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/drawable_border_top"
-                    android:hint="9876543210"
-                    android:maxLength="10"
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:inputType="number"
-                    android:padding="@dimen/spacing_medium"
-                    android:textSize="@dimen/font_large" />
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/ccp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:ccp_showNameCode="false" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etMobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/drawable_border_top"
+                        android:hint="9876543210"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:padding="@dimen/spacing_medium"
+                        android:textAppearance="@style/CustomTextAppearance"
+                        android:textSize="@dimen/font_large" />
+                </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etOtp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/drawable_border_bottom"
-                    android:hint="1234"
-                    android:visibility="gone"
-                    android:maxLength="4"
                     android:elevation="5dp"
-                    android:textAppearance="@style/CustomTextAppearance"
+                    android:hint="1234"
                     android:inputType="number"
+                    android:maxLength="4"
                     android:padding="@dimen/spacing_medium"
-                    android:textSize="@dimen/font_large" />
+                    android:textAppearance="@style/CustomTextAppearance"
+                    android:textSize="@dimen/font_large"
+                    android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvResendOtp"
@@ -73,8 +87,8 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="@dimen/spacing_small"
                     android:text="Resend OTP"
-                    android:textAppearance="@style/CustomTextAppearance.Medium"
                     android:textAlignment="textEnd"
+                    android:textAppearance="@style/CustomTextAppearance.Medium"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/font_small" />
 
@@ -94,9 +108,9 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/drawable_border_top"
                     android:hint="email"
-                    android:textAppearance="@style/CustomTextAppearance"
                     android:inputType="textEmailAddress"
                     android:padding="@dimen/spacing_medium"
+                    android:textAppearance="@style/CustomTextAppearance"
                     android:textSize="@dimen/font_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -104,11 +118,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/drawable_border_bottom"
-                    android:textAppearance="@style/CustomTextAppearance"
-                    android:hint="password"
                     android:elevation="5dp"
+                    android:hint="password"
                     android:inputType="textPassword"
                     android:padding="@dimen/spacing_medium"
+                    android:textAppearance="@style/CustomTextAppearance"
                     android:textSize="@dimen/font_large" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -156,6 +170,7 @@
                     app:srcCompat="@drawable/ic_google" />
             </LinearLayout>
 
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvLogin"
                 android:layout_width="match_parent"
@@ -163,12 +178,12 @@
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:background="@drawable/drawable_border_primary"
                 android:drawableRight="@drawable/ic_login_next"
+                android:elevation="5dp"
                 android:gravity="center"
                 android:padding="@dimen/spacing_small"
                 android:text="Log In"
-                android:elevation="5dp"
-                android:textAppearance="@style/CustomTextAppearance.Bold"
                 android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextAppearance.Bold"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_large" />
 
@@ -179,10 +194,10 @@
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:background="@drawable/drawable_border"
                 android:gravity="center"
-                android:textAppearance="@style/CustomTextAppearance.Medium"
                 android:padding="@dimen/spacing_normal"
                 android:text="Create an account"
                 android:textAllCaps="true"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
                 android:textSize="@dimen/font_large" />
 
 
@@ -192,10 +207,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:gravity="center"
-                android:textAppearance="@style/CustomTextAppearance"
                 android:padding="@dimen/spacing_normal"
-                android:textColor="@color/colorPrimary"
                 android:text="@string/login_with_email"
+                android:textAppearance="@style/CustomTextAppearance"
+                android:textColor="@color/colorPrimary"
 
                 android:textSize="@dimen/font_normal" />
 

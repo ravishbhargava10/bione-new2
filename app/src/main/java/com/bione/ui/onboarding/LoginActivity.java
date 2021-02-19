@@ -1,11 +1,8 @@
 package com.bione.ui.onboarding;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.view.View;
@@ -14,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -29,7 +25,7 @@ import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
-import com.bione.ui.MainActivity;
+import com.bione.ui.dashboard.MainActivity;
 import com.bione.ui.base.BaseActivity;
 import com.bione.utils.CustomTypefaceSpan;
 import com.bione.utils.Log;
@@ -49,6 +45,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.hbb20.CountryCodePicker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,6 +68,7 @@ public class LoginActivity extends BaseActivity {
     private static final int RC_SIGN_IN = 101;
     private GoogleSignInClient mGoogleSignInClient;
     private CallbackManager callbackManager;
+
 
     private LinearLayout llPhone;
     private LinearLayout llEmail;
@@ -102,6 +100,9 @@ public class LoginActivity extends BaseActivity {
     private JSONObject customerObject = new JSONObject();
     private JSONObject customAttributeObject = new JSONObject();
     private JSONArray customAttributeArray = new JSONArray();
+
+    private LinearLayout llCountryCode;
+    private CountryCodePicker ccp;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -149,6 +150,12 @@ public class LoginActivity extends BaseActivity {
         etPassword = findViewById(R.id.etPassword);
 
         tvLogin.setText("GET OTP");
+
+        llCountryCode = findViewById(R.id.llCountryCode);
+        ccp = findViewById(R.id.ccp);
+        ccp.setOnClickListener(this);
+        ccp.setCountryForPhoneCode(91);
+
     }
 
     private void setListeners() {
@@ -162,6 +169,13 @@ public class LoginActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
 
+            case R.id.ccp:
+
+                Toast.makeText(LoginActivity.this, "This is from OnCountryChangeListener. \n Country updated to "
+                        + ccp.getSelectedCountryName() + "(" + ccp.getSelectedCountryCodeWithPlus() + ")", Toast.LENGTH_SHORT).show();
+
+
+                break;
             case R.id.tvLoginType:
                 if (isThroughPhoneNumber) {
                     isThroughPhoneNumber = false;
@@ -498,7 +512,7 @@ public class LoginActivity extends BaseActivity {
     public void callVerifyOtp() {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
-                .add(PARAM_MOBILE, "91" + phoneNumber)
+                .add(PARAM_MOBILE, ccp.getSelectedCountryCode() + phoneNumber)
                 .add(PARAM_OTP, otpCode)
                 .build();
         RestClient.getApiInterface().verifyOtp(commonParams.getMap()).enqueue(new ResponseResolver<List<SignInDatum>>() {

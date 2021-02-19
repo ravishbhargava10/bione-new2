@@ -129,4 +129,7 @@ dependencies {
 //    //slide menu
     implementation 'com.specyci:residemenu:1.6+'
 
+    // country picker
+    implementation 'com.hbb20:ccp:2.4.5'
+
 }

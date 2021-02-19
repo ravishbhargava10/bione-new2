@@ -1,4 +1,4 @@
-package com.bione.ui;
+package com.bione.ui.dashboard;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -16,12 +16,7 @@ import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 
-import com.bione.ui.dashboard.ChatFragment;
 import com.bione.ui.dashboard.paymentreceipt.PaymentReceiptFragment;
-import com.bione.ui.dashboard.FaqFragment;
-import com.bione.ui.dashboard.DashBoardFragment;
-import com.bione.ui.dashboard.MyCounsellingFragment;
-import com.bione.ui.dashboard.ProfileFragment;
 import com.bione.ui.onboarding.WebviewActivity;
 import com.bione.utils.Log;
 import com.bumptech.glide.Glide;

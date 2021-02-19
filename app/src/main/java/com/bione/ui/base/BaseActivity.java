@@ -26,7 +26,7 @@ import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
 import com.bione.network.RestClient;
-import com.bione.ui.MainActivity;
+import com.bione.ui.dashboard.MainActivity;
 import com.bione.utils.AppConstant;
 import com.bione.utils.CommonUtil;
 import com.bione.utils.Log;

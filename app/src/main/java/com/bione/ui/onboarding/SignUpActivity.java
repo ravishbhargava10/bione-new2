@@ -23,6 +23,7 @@ import com.bione.ui.base.BaseActivity;
 import com.bione.utils.Log;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.hbb20.CountryCodePicker;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -50,6 +51,8 @@ public class SignUpActivity extends BaseActivity {
     private AppCompatCheckBox cbFirst;
     private AppCompatCheckBox cbSecond;
     private AppCompatCheckBox cbThird;
+
+    private CountryCodePicker ccp;
 
     private JSONObject jsonObject = new JSONObject();
     private JSONObject customerObject = new JSONObject();
@@ -131,6 +134,10 @@ public class SignUpActivity extends BaseActivity {
         cbSecond = findViewById(R.id.cbSecond);
         cbThird = findViewById(R.id.cbThird);
 
+        ccp = findViewById(R.id.ccp);
+        ccp.setOnClickListener(this);
+        ccp.setCountryForPhoneCode(91);
+
     }
 
 
@@ -204,7 +211,7 @@ public class SignUpActivity extends BaseActivity {
 //        final CommonParams commonParams = new CommonParams.Builder()
 //                .add(PARAM_MOBILE, "91" + phoneNumber).build();
         final CommonParams commonParams = new CommonParams.Builder()
-                .add(PARAM_MOBILE, "91" + phoneNumber)
+                .add(PARAM_MOBILE, ccp.getSelectedCountryCode() + phoneNumber)
                 .add(PARAM_OTP, etOtp.getText().toString())
                 .build();
 
@@ -285,7 +292,7 @@ public class SignUpActivity extends BaseActivity {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
 //                .add(PARAM_MOBILE, "" + phoneNumber).build();
-                .add(PARAM_MOBILE, "91" + phoneNumber).build();
+                .add(PARAM_MOBILE, ccp.getSelectedCountryCode() + phoneNumber).build();
 
         RestClient.getApiInterface().sendOtpRegister(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
             @Override

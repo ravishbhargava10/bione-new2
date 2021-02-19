@@ -144,6 +144,7 @@ public class ProfileFragment extends BaseFragment {
 
         switch (view.getId()) {
 
+            case R.id.tvEditPassword:
             case R.id.relPassword:
                 Intent intent = new Intent(mContext, ChangePasswordActivity.class);
                 intent.putExtra("fromForgot", false);
@@ -167,10 +168,10 @@ public class ProfileFragment extends BaseFragment {
                 tvEditEmail.setText("Done");
                 break;
 
-            case R.id.tvEditPassword:
-                etPassword.setEnabled(true);
-                tvEditPassword.setText("Done");
-                break;
+//            case R.id.tvEditPassword:
+//                etPassword.setEnabled(true);
+//                tvEditPassword.setText("Done");
+//                break;
         }
     }
 

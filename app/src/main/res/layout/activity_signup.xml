@@ -109,22 +109,38 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/textInputLayout"
-                android:baselineAligned="true"
-                app:boxStrokeWidth="1dp"
-                app:boxStrokeColor="@color/colorPrimary"
-                app:helperText="Mobile Number without country code i.e 9987654321"
-                android:hint="Phone Number">
+            <LinearLayout
+                android:id="@+id/llCountryCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPhone"
-                    style="@style/textInputEditText"
-                    android:maxLength="10" />
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/ccp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:ccp_showNameCode="false" />
 
-                <View style="@style/viewLine" />
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/textInputLayout"
+                    android:baselineAligned="true"
+                    android:hint="Phone Number"
+                    android:layout_marginTop="0dp"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:boxStrokeWidth="1dp">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPhone"
+                        style="@style/textInputEditText"
+                        android:maxLength="10" />
+
+                    <View style="@style/viewLine" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvSendOtp"
@@ -144,8 +160,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutOtp"
                 style="@style/textInputLayout"
-                android:visibility="gone"
-                android:hint="Enter OTP here">
+                android:hint="Enter OTP here"
+                android:visibility="gone">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etOtp"
