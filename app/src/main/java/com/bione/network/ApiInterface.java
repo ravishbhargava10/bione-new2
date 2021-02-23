@@ -9,6 +9,7 @@ import com.bione.model.customerdata.SignInDatum;
 import com.bione.model.customerkit.CustomerKit;
 import com.bione.model.paymentreceiptlist.ReceiptList;
 import com.bione.model.salesdetail.SalesDetail;
+import com.bione.model.testNameList.TestNameList;
 import com.bione.model.updateprofile.UpdateProfile;
 
 import java.util.HashMap;
@@ -130,6 +131,9 @@ public interface ApiInterface {
 
     @PUT("/rest/V1/customers/password")
     Call<Boolean> emailReset(@QueryMap Map<String, String> map);
+
+    @GET("/rest/V1/bioneproduct/productitems")
+    Call<TestNameList> testNames();
 
 
     /**

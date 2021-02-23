@@ -112,18 +112,13 @@ public class PaymentReceiptViewActivity extends BaseActivity {
                 URL url = new URL(strings[0]);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 if (urlConnection.getResponseCode() == 200) {
-//                    hideLoading();
                     inputStream = new BufferedInputStream(urlConnection.getInputStream());
                 } else {
-//                    hideLoading();
                     errorMessage();
-//                    openDialog();
                 }
             } catch (IOException e) {
-//                hideLoading();
                 e.printStackTrace();
                 errorMessage();
-//                openDialog();
                 return null;
             }
             return inputStream;
@@ -132,14 +127,12 @@ public class PaymentReceiptViewActivity extends BaseActivity {
         @Override
         protected void onPostExecute(InputStream inputStream) {
             pdfView.fromStream(inputStream)
-//                    .password(password)
                     .onError(throwable -> LogUtils.e("", "Error in opening PDF"))
                     .onError(new OnErrorListener() {
                         @Override
                         public void onError(Throwable t) {
                             errorMessage();
                             hideLoading();
-//                            openDialog();
                         }
                     })
                     .onPageError(new OnPageErrorListener() {
@@ -147,19 +140,16 @@ public class PaymentReceiptViewActivity extends BaseActivity {
                         public void onPageError(int page, Throwable t) {
                             errorMessage();
                             hideLoading();
-//                            openDialog();
                         }
                     })
                     .onLoad(new OnLoadCompleteListener() {
                         @Override
                         public void loadComplete(int nbPages) {
                             hideLoading();
-//                            bottom.setVisibility(View.VISIBLE);
-//                            relProfile.setVisibility(View.VISIBLE);
                         }
                     })
                     .load();
-//            hideLoading();
+
         }
     }
 
