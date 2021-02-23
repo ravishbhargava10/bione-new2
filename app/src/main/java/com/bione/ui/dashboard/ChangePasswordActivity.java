@@ -180,6 +180,8 @@ public class ChangePasswordActivity extends BaseActivity {
                         try {
                             if (isChanged)
                                 showErrorMessage("Password changed successfully");
+                            else
+                                showErrorMessage("Unexpected error!");
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -228,11 +230,12 @@ public class ChangePasswordActivity extends BaseActivity {
                 .build();
 
         Log.d("code ", "map :: " + commonParams.getMap());
-        RestClient.getApiInterface().forgotSendOtp(commonParams.getMap()).enqueue(new ResponseResolver<String>() {
+        RestClient.getApiInterface().forgotPasswordUpdate(commonParams.getMap()).enqueue(new ResponseResolver<Boolean>() {
             @Override
-            public void onSuccess(String s) {
+            public void onSuccess(Boolean s) {
 
-                Log.d("String ", "Value :: " + s);
+                Log.d("boolean ", "Value :: " + s);
+                finish();
 
             }
 

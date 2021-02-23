@@ -1,6 +1,8 @@
 package com.bione.ui.dashboard;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,6 +19,7 @@ import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 
 import com.bione.ui.dashboard.paymentreceipt.PaymentReceiptFragment;
+import com.bione.ui.onboarding.Splash;
 import com.bione.ui.onboarding.WebviewActivity;
 import com.bione.utils.Log;
 import com.bumptech.glide.Glide;
@@ -45,6 +48,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import java.io.File;
 import java.util.List;
+
+import io.paperdb.Paper;
 
 import static com.bione.utils.AppConstant.PARAM_CUSTOMERID;
 import static com.bione.utils.AppConstant.PARAM_EMAIL;
@@ -362,7 +367,27 @@ public class MainActivity extends BaseActivity {
                         break;
 
                     case R.id.nav_logout:
-                        Toast.makeText(MainActivity.this, "Logout Clicked", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Logout Clicked", Toast.LENGTH_SHORT).show();
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setMessage("Are you sure?")
+                                .setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(final DialogInterface dialog, final int which) {
+//                                Toast.makeText(getApplicationContext(), "Yes", Toast.LENGTH_SHORT).show();
+                                        Paper.book().destroy();
+                                        Intent intent = new Intent(MainActivity.this, Splash.class);
+                                        // set the new task and clear flags
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                    }
+                                })
+                                .setNegativeButton(R.string.text_no, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+//                                Toast.makeText(getApplicationContext(), "No", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
+                                .show();
                         return true;
 
                     case R.id.nav_about_us:

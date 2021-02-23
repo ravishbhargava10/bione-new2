@@ -473,7 +473,7 @@ public class LoginActivity extends BaseActivity {
         showLoading();
         final CommonParams commonParams = new CommonParams.Builder()
 //                .add(PARAM_MOBILE, "" + phoneNumber).build();
-                .add(PARAM_MOBILE, "" + phoneNumber).build();
+                .add(PARAM_MOBILE, "" + ccp.getSelectedCountryCode() + phoneNumber).build();
 
         RestClient.getApiInterface().sendOtp(commonParams.getMap()).enqueue(new ResponseResolver<List<CommonResponse>>() {
             @Override

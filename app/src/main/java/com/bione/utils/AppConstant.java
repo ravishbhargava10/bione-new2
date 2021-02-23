@@ -25,6 +25,8 @@ public final class AppConstant {
     public static final String PARAM_MOBILE = "mobile";
     public static final String PARAM_PHONE = "phone";
     public static final String PARAM_EMAIL = "email";
+    public static final String PARAM_TEMPLATE = "template";
+    public static final String PARAM_WEBSITEID = "websiteId";
     public static final String PARAM_MESSAGE = "message";
     public static final String PARAM_OTP = "otp";
     public static final String PARAM_CUSTOMER = "customer";

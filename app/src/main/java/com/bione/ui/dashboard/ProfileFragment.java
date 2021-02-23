@@ -63,7 +63,7 @@ public class ProfileFragment extends BaseFragment {
 
     private JSONObject jsonObject = new JSONObject();
     private JSONObject customerObject = new JSONObject();
-    private JSONArray customAttributeArray = new JSONArray();
+    private JSONArray  customAttributeArray = new JSONArray();
     private JSONObject customAttributeObject = new JSONObject();
 
 

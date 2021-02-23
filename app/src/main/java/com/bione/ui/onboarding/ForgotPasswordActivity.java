@@ -26,11 +26,14 @@ import com.bione.utils.ValidationUtil;
 import com.google.android.material.textfield.TextInputLayout;
 import com.hbb20.CountryCodePicker;
 
+import static com.bione.utils.AppConstant.PARAM_EMAIL;
 import static com.bione.utils.AppConstant.PARAM_MOBILE;
 import static com.bione.utils.AppConstant.PARAM_OTP;
 import static com.bione.utils.AppConstant.PARAM_PASSWORD;
 import static com.bione.utils.AppConstant.PARAM_PHONE;
+import static com.bione.utils.AppConstant.PARAM_TEMPLATE;
 import static com.bione.utils.AppConstant.PARAM_USERNAME;
+import static com.bione.utils.AppConstant.PARAM_WEBSITEID;
 
 public class ForgotPasswordActivity extends BaseActivity {
 
@@ -141,7 +144,8 @@ public class ForgotPasswordActivity extends BaseActivity {
 
                     // is email email verification
                     if (ValidationUtil.checkEmail(etEmail.getText().toString())) {
-                        openDialog();
+                        emailResetPasswordAPI();
+
                     } else {
                         condition = 0;
                         showErrorMessage("Please enter valid email");
@@ -151,9 +155,7 @@ public class ForgotPasswordActivity extends BaseActivity {
                     //number valid
                     if (!etPhone.getText().toString().isEmpty()) {
                         //is number otp verification
-                        tvSend.setText("Verify");
-                        layoutOtp.setVisibility(View.VISIBLE);
-                        condition = 2;
+                        forgotSendOtp();
 
                     } else {
                         showErrorMessage("Please enter phone number");
@@ -166,11 +168,7 @@ public class ForgotPasswordActivity extends BaseActivity {
                         if (etOtp.getText().toString().isEmpty()) {
                             showErrorMessage("Please enter OTP");
                         } else {
-                            Intent intent = new Intent(ForgotPasswordActivity.this, ChangePasswordActivity.class);
-                            intent.putExtra("fromForgot", true);
-                            intent.putExtra("mobile", etPhone.getText().toString());
-                            intent.putExtra("otp", etOtp.getText().toString());
-                            startActivity(intent);
+                            forgotVerifyOtp();
                         }
                     }
                 }
@@ -195,9 +193,46 @@ public class ForgotPasswordActivity extends BaseActivity {
         }
     }
 
+    private void emailResetPasswordAPI() {
+        final CommonParams commonParams = new CommonParams.Builder()
+                .add(PARAM_EMAIL, etEmail.getText().toString())
+                .add(PARAM_TEMPLATE, "email_reset")
+                .add(PARAM_WEBSITEID, "1")
+                .build();
+
+        Log.d("code ", "map :: " + commonParams.getMap());
+        RestClient.getApiInterface().emailReset(commonParams.getMap()).enqueue(new ResponseResolver<Boolean>() {
+            @Override
+            public void onSuccess(Boolean isTrue) {
+
+                Log.d("String ", "Value :: " + isTrue);
+                if (isTrue) {
+                    showErrorMessage("If there is an account associated with "
+                            + etEmail.getText().toString()
+                            + ", you will receive an email with a link to reset your password.");
+                    finish();
+                } else
+                    showErrorMessage("Unexpected error!");
+
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+            }
+        });
+    }
+
     private void forgotSendOtp() {
         final CommonParams commonParams = new CommonParams.Builder()
-                .add(PARAM_MOBILE, etEmail.getText().toString())
+                .add(PARAM_MOBILE, "" + ccp.getSelectedCountryCode() + etPhone.getText().toString())
                 .build();
 
         Log.d("code ", "map :: " + commonParams.getMap());
@@ -207,6 +242,13 @@ public class ForgotPasswordActivity extends BaseActivity {
 
                 Log.d("String ", "Value :: " + s);
 
+                if(s.equals("true")) {
+                    tvSend.setText("Verify");
+                    layoutOtp.setVisibility(View.VISIBLE);
+                    condition = 2;
+                }else{
+                    showErrorMessage("Unexpected message!");
+                }
             }
 
             @Override
@@ -225,8 +267,8 @@ public class ForgotPasswordActivity extends BaseActivity {
 
     private void forgotVerifyOtp() {
         final CommonParams commonParams = new CommonParams.Builder()
-                .add(PARAM_MOBILE, etEmail.getText().toString())
-                .add(PARAM_OTP, etEmail.getText().toString())
+                .add(PARAM_MOBILE, "" + ccp.getSelectedCountryCode() + etPhone.getText().toString())
+                .add(PARAM_OTP, etOtp.getText().toString())
                 .build();
 
         Log.d("code ", "map :: " + commonParams.getMap());
@@ -235,7 +277,11 @@ public class ForgotPasswordActivity extends BaseActivity {
             public void onSuccess(Boolean s) {
 
                 Log.d("Boolean ", "Value :: " + s);
-
+                Intent intent = new Intent(ForgotPasswordActivity.this, ChangePasswordActivity.class);
+                intent.putExtra("fromForgot", true);
+                intent.putExtra("mobile", "" + ccp.getSelectedCountryCode() + etPhone.getText().toString());
+                intent.putExtra("otp", etOtp.getText().toString());
+                startActivity(intent);
             }
 
             @Override

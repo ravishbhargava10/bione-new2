@@ -45,6 +45,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:background="@drawable/drawable_border_top"
                     android:orientation="horizontal">
 
                     <com.hbb20.CountryCodePicker
@@ -57,7 +58,7 @@
                         android:id="@+id/etMobile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/drawable_border_top"
+                       android:background="@color/transparent"
                         android:hint="9876543210"
                         android:inputType="number"
                         android:maxLength="10"

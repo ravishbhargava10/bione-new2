@@ -118,7 +118,7 @@ public interface ApiInterface {
 
 
 
-    @GET("/mobilelogin/index/ajaxforgot")
+    @GET("/mobilelogin/index/ajaxforgot/")
     Call<String> forgotSendOtp(@QueryMap Map<String, String> map);
 
     @GET("/mobilelogin/index/ajaxforgototpverify")
@@ -128,6 +128,8 @@ public interface ApiInterface {
     Call<Boolean> forgotPasswordUpdate(@QueryMap Map<String, String> map);
 
 
+    @PUT("/rest/V1/customers/password")
+    Call<Boolean> emailReset(@QueryMap Map<String, String> map);
 
 
     /**
