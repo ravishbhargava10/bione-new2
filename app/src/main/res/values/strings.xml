@@ -100,15 +100,18 @@
     <string name="closeDrawer">close_drawer</string>
     <string name="nav_settings">Settings</string>
     <string name="nav_about_us">About Us</string>
-    <string name="privacy_policy">Privacy Policy</string>
+    <string name="nav_terms_conditions">Terms &amp; Conditions</string>
+    <string name="nav_privacy_policy">Privacy Policy</string>
+    <string name="nav_faq_support">Faq &amp; Support</string>
 
     <string-array name="nav_item_activity_titles">
         <item>My Dashboard</item>
         <item>My Profile</item>
-        <item>My Session</item>
-        <item>Chat with us</item>
-        <item>FAQ\'s</item>
         <item>Payment Receipt</item>
+        <item>Chat with us</item>
+        <item>My Session</item>
+        <item>FAQ\'s</item>
+
     </string-array>
 
     <string-array name="payment_modes">

@@ -135,6 +135,8 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void init() {
+        ivFB = findViewById(R.id.ivFB);
+        ivGoogle = findViewById(R.id.ivGoogle);
         llPhone = findViewById(R.id.llPhone);
         llEmail = findViewById(R.id.llEmail);
 
@@ -163,6 +165,8 @@ public class LoginActivity extends BaseActivity {
         tvLoginType.setOnClickListener(this);
         tvCreateAccount.setOnClickListener(this);
         tvForgotPassword.setOnClickListener(this);
+        ivFB.setOnClickListener(this);
+        ivGoogle.setOnClickListener(this);
     }
 
     @Override
@@ -173,9 +177,8 @@ public class LoginActivity extends BaseActivity {
 
                 Toast.makeText(LoginActivity.this, "This is from OnCountryChangeListener. \n Country updated to "
                         + ccp.getSelectedCountryName() + "(" + ccp.getSelectedCountryCodeWithPlus() + ")", Toast.LENGTH_SHORT).show();
-
-
                 break;
+
             case R.id.tvLoginType:
                 if (isThroughPhoneNumber) {
                     isThroughPhoneNumber = false;

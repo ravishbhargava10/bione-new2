@@ -105,37 +105,6 @@ public class MainActivity extends BaseActivity {
 
         mHandler = new Handler();
 
-
-//        tvLogout = findViewById(R.id.tvLogout);
-
-//        tvLogout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                new AlertDialog.Builder(MainActivity.this)
-//                        .setMessage("Are you sure?")
-//                        .setPositiveButton(R.string.text_yes, new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(final DialogInterface dialog, final int which) {
-////                                Toast.makeText(getApplicationContext(), "Yes", Toast.LENGTH_SHORT).show();
-//                                Paper.book().destroy();
-//                                Intent intent = new Intent(MainActivity.this, Splash.class);
-//                                // set the new task and clear flags
-//                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                                startActivity(intent);
-//                            }
-//                        })
-//                        .setNegativeButton(R.string.text_no, new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialogInterface, int i) {
-////                                Toast.makeText(getApplicationContext(), "No", Toast.LENGTH_SHORT).show();
-//                            }
-//                        })
-//                        .show();
-//            }
-//        });
-
-
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -309,7 +278,8 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setToolbarTitle() {
-        getSupportActionBar().setTitle(activityTitles[navItemIndex]);
+        getSupportActionBar().setTitle("");
+//        getSupportActionBar().setLogo(R.drawable.ic_bione_logo_header);
     }
 
     private void selectNavMenu() {
@@ -390,7 +360,7 @@ public class MainActivity extends BaseActivity {
                                 .show();
                         return true;
 
-                    case R.id.nav_about_us:
+                    case R.id.nav_term_condition:
                         // launch new intent instead of loading fragment
                         Intent intent = new Intent(MainActivity.this, WebviewActivity.class);
                         intent.putExtra("link", "https://www.bione.in/terms-of-service");
@@ -402,6 +372,13 @@ public class MainActivity extends BaseActivity {
                         Intent intent2 = new Intent(MainActivity.this, WebviewActivity.class);
                         intent2.putExtra("link", "https://www.bione.in/privacy-policy");
                         startActivity(intent2);
+                        drawer.closeDrawers();
+                        return true;
+                    case R.id.nav_faq_support:
+                        // launch new intent instead of loading fragment
+                        Intent intent3 = new Intent(MainActivity.this, WebviewActivity.class);
+                        intent3.putExtra("link", "https://www.bione.in/faqs");
+                        startActivity(intent3);
                         drawer.closeDrawers();
                         return true;
 

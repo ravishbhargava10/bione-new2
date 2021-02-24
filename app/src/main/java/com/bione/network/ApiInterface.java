@@ -133,7 +133,7 @@ public interface ApiInterface {
     Call<Boolean> emailReset(@QueryMap Map<String, String> map);
 
     @GET("/rest/V1/bioneproduct/productitems")
-    Call<TestNameList> testNames();
+    Call<List<TestNameList>> testNames();
 
 
     /**

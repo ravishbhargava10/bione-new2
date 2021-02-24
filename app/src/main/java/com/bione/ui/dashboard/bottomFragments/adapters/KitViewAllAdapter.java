@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bione.R;
@@ -34,7 +35,7 @@ public class KitViewAllAdapter extends RecyclerView.Adapter<KitViewAllAdapter.My
         // each data item is just a string in this case
         public View view;
 //        public View viewShaded;
-        public RelativeLayout llVisible;
+        public CardView llVisible;
         public ImageView image;
         public AppCompatTextView tvHeading;
         public AppCompatTextView tvDetail;
@@ -68,30 +69,15 @@ public class KitViewAllAdapter extends RecyclerView.Adapter<KitViewAllAdapter.My
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
 
-//        if (position == 0 || position == (crouselDataArrayList.size() - 1)) {
-//            holder.llVisible.setVisibility(View.INVISIBLE);
-//        } else {
-//            holder.viewShaded.setVisibility(View.GONE);
             holder.llVisible.setVisibility(View.VISIBLE);
             holder.tvHeading.setText(crouselDataArrayList.get(position).getHeading());
-//            holder.tvText.setText(crouselDataArrayList.get(position).getText());
-//            holder.tvDetail.setText(crouselDataArrayList.get(position).getText());
-            holder.image.setImageResource(crouselDataArrayList.get(position).getDrawableTest());
-//        }
-
+            holder.tvDetail.setText(crouselDataArrayList.get(position).getText());
+            holder.image.setImageResource(crouselDataArrayList.get(position).getDrawable());
 
         holder.llVisible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (kitOrderSize > 0) {
-                    if (position == 1) {
-//                        openMyMicroBiome();
-                    } else {
-//                        openPDFView(position);
-                    }
-                } else {
-//                    openPDFView(position);
-                }
+
             }
         });
 

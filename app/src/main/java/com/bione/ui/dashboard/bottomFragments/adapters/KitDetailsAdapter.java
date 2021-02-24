@@ -34,7 +34,7 @@ public class KitDetailsAdapter extends RecyclerView.Adapter<KitDetailsAdapter.My
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public View view;
-//        public View viewShaded;
+        //        public View viewShaded;
         public RelativeLayout llVisible;
         public ImageView image;
         public AppCompatTextView tvHeading;
@@ -69,30 +69,15 @@ public class KitDetailsAdapter extends RecyclerView.Adapter<KitDetailsAdapter.My
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
 
-//        if (position == 0 || position == (crouselDataArrayList.size() - 1)) {
-//            holder.llVisible.setVisibility(View.INVISIBLE);
-//        } else {
-//            holder.viewShaded.setVisibility(View.GONE);
-            holder.llVisible.setVisibility(View.VISIBLE);
-            holder.tvHeading.setText(crouselDataArrayList.get(position).getHeading());
-//            holder.tvText.setText(crouselDataArrayList.get(position).getText());
-//            holder.tvDetail.setText(crouselDataArrayList.get(position).getText());
-            holder.image.setImageResource(crouselDataArrayList.get(position).getDrawableTest());
-//        }
-
+        holder.llVisible.setVisibility(View.VISIBLE);
+        holder.tvHeading.setText(crouselDataArrayList.get(position).getHeading());
+        holder.tvDetail.setText(crouselDataArrayList.get(position).getText());
+        holder.image.setImageResource(crouselDataArrayList.get(position).getDrawable());
 
         holder.llVisible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (kitOrderSize > 0) {
-                    if (position == 1) {
-//                        openMyMicroBiome();
-                    } else {
-//                        openPDFView(position);
-                    }
-                } else {
-//                    openPDFView(position);
-                }
+
             }
         });
 

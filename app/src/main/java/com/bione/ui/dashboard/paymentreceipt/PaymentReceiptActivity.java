@@ -27,6 +27,10 @@ import androidx.fragment.app.FragmentManager;
 import com.bione.R;
 import com.bione.db.CommonData;
 import com.bione.model.PaymentReceipt;
+import com.bione.model.salesdetail.Data;
+import com.bione.model.salesdetail.SalesDetail;
+import com.bione.model.testNameList.Product;
+import com.bione.model.testNameList.TestNameList;
 import com.bione.network.ApiError;
 import com.bione.network.CommonParams;
 import com.bione.network.ResponseResolver;
@@ -39,6 +43,9 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import static com.bione.utils.AppConstant.PARAM_EMAIL;
 
 public class PaymentReceiptActivity extends BaseActivity {
 
@@ -46,6 +53,7 @@ public class PaymentReceiptActivity extends BaseActivity {
     private static StringBuilder selectedTests = new StringBuilder();
     //    private static TextInputEditText etTestName;
     private static AppCompatTextView etTestName;
+    private static TextInputEditText etTestAmount;
     private AppCompatTextView etDate;
     private TextInputEditText etFirstName;
     private TextInputEditText etLastName;
@@ -55,7 +63,6 @@ public class PaymentReceiptActivity extends BaseActivity {
     private TextInputEditText etPaymentMode;
     private TextInputEditText etBalanceAmount;
     private TextInputEditText etRemarks;
-    private TextInputEditText etTestAmount;
 
 
     private TextInputLayout layoutBalanceAmount;
@@ -69,6 +76,9 @@ public class PaymentReceiptActivity extends BaseActivity {
     private Spinner spinner2;
     private int enteredValue = 0;
     private int actualAmount = 0;
+
+
+    private static ArrayList<Product> testNameList = new ArrayList<>();
 
 //    private Context mContext;
 //    private View rootView;
@@ -86,7 +96,7 @@ public class PaymentReceiptActivity extends BaseActivity {
         setContentView(R.layout.activity_payment_receipt);
 
         init();
-
+        testNamessList();
         setRadio();
         setSpinner();
         etSalesPerson.setText(CommonData.getUserData().getFirstname());
@@ -379,47 +389,51 @@ public class PaymentReceiptActivity extends BaseActivity {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             ArrayList selectedItems = new ArrayList();
-            final String[] strArray = new String[39];
-            strArray[0] = "BioneXome";
-            strArray[1] = "BioneMITO";
-            strArray[2] = "BioneXome + MITO";
-            strArray[3] = "BioneGenome30";
-            strArray[4] = "BioneGenome30 + MITO";
-            strArray[5] = "BioneArrayCyto 750K";
-            strArray[6] = "BioneXome + ArrayCyto 750K";
-            strArray[7] = "Maternal Cell Contamination";
-            strArray[8] = "Fragile X repeat expansion";
-            strArray[9] = "Single gene variant Testing-SangerSeq";
-            strArray[10] = "BioneXomeTrio";
-            strArray[11] = "BioneArrayCyto HD";
-            strArray[12] = "BioneMerosin-deficient congenital muscular dystrophy type 1A";
-            strArray[13] = "BioneDMD";
-            strArray[14] = "BioneLMNA";
-            strArray[15] = "BioneSMA";
-            strArray[16] = "Bione SCA Panel";
-            strArray[17] = "BioneHD";
-            strArray[18] = "BioneHBB";
-            strArray[19] = "BioneHBS";
-            strArray[20] = "BioneHBB Trio";
-            strArray[21] = "BioneAlphaThalHBA";
-            strArray[22] = "BioneCFTR del508";
-            strArray[23] = "BioneGenome10";
-            strArray[24] = "BioneGenome20";
-            strArray[25] = "Bione Whole Metagenome";
-            strArray[26] = "Bione LongiFIT";
-            strArray[27] = "BioneHBB+MCC";
-            strArray[28] = "BioneXome + ArrayCyto 750K + Fragile X";
-            strArray[29] = "Clin-Microbiome";
-            strArray[30] = "BioneClinXome";
-            strArray[31] = "BioneClinXome + MITO";
-            strArray[32] = "BioneDMD+MCC";
-            strArray[33] = "BioneXome + MCC";
-            strArray[34] = "BioneClinXome  + ArrayCyto 750K";
-            strArray[35] = "BioneCFH";
-            strArray[36] = "BioneArrayCyto 350K";
-            strArray[37] = "BioneArrayCyto 350K+MCC+QFPCR";
-            strArray[38] = "BioneFriedreich's Ataxia";
+            ArrayList<Integer> selectedIndexes = new ArrayList();
+            final String[] strArray = new String[testNameList.size()];
+//            strArray[0] = "BioneXome";
+//            strArray[1] = "BioneMITO";
+//            strArray[2] = "BioneXome + MITO";
+//            strArray[3] = "BioneGenome30";
+//            strArray[4] = "BioneGenome30 + MITO";
+//            strArray[5] = "BioneArrayCyto 750K";
+//            strArray[6] = "BioneXome + ArrayCyto 750K";
+//            strArray[7] = "Maternal Cell Contamination";
+//            strArray[8] = "Fragile X repeat expansion";
+//            strArray[9] = "Single gene variant Testing-SangerSeq";
+//            strArray[10] = "BioneXomeTrio";
+//            strArray[11] = "BioneArrayCyto HD";
+//            strArray[12] = "BioneMerosin-deficient congenital muscular dystrophy type 1A";
+//            strArray[13] = "BioneDMD";
+//            strArray[14] = "BioneLMNA";
+//            strArray[15] = "BioneSMA";
+//            strArray[16] = "Bione SCA Panel";
+//            strArray[17] = "BioneHD";
+//            strArray[18] = "BioneHBB";
+//            strArray[19] = "BioneHBS";
+//            strArray[20] = "BioneHBB Trio";
+//            strArray[21] = "BioneAlphaThalHBA";
+//            strArray[22] = "BioneCFTR del508";
+//            strArray[23] = "BioneGenome10";
+//            strArray[24] = "BioneGenome20";
+//            strArray[25] = "Bione Whole Metagenome";
+//            strArray[26] = "Bione LongiFIT";
+//            strArray[27] = "BioneHBB+MCC";
+//            strArray[28] = "BioneXome + ArrayCyto 750K + Fragile X";
+//            strArray[29] = "Clin-Microbiome";
+//            strArray[30] = "BioneClinXome";
+//            strArray[31] = "BioneClinXome + MITO";
+//            strArray[32] = "BioneDMD+MCC";
+//            strArray[33] = "BioneXome + MCC";
+//            strArray[34] = "BioneClinXome  + ArrayCyto 750K";
+//            strArray[35] = "BioneCFH";
+//            strArray[36] = "BioneArrayCyto 350K";
+//            strArray[37] = "BioneArrayCyto 350K+MCC+QFPCR";
+//            strArray[38] = "BioneFriedreich's Ataxia";
 
+            for (int i = 0; i < testNameList.size(); i++) {
+                strArray[i] = testNameList.get(i).getTestName();
+            }
 
             AlertDialog.Builder builder =
                     new AlertDialog.Builder(getActivity());
@@ -430,7 +444,9 @@ public class PaymentReceiptActivity extends BaseActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             StringBuilder sb = new StringBuilder();
                             boolean foundOne = false;
+                            Long totalMrp = 0L;
                             for (int t = 0; t < selectedItems.size(); t++) {
+                                totalMrp = totalMrp + Long.parseLong(testNameList.get(selectedIndexes.get(t)).getMrp());
                                 if (foundOne) {
                                     sb.append(", ");
                                 }
@@ -440,20 +456,27 @@ public class PaymentReceiptActivity extends BaseActivity {
                             }
                             selectedTests = sb;
                             etTestName.setText(sb.toString());
+                            etTestAmount.setText(totalMrp.toString());
                             dialogInterface.dismiss();
                         }
                     })
 
+//                    .setMultiChoiceItems(testNameList, null,
                     .setMultiChoiceItems(strArray, null,
                             new DialogInterface.OnMultiChoiceClickListener() {
                                 public void onClick(DialogInterface dialog, int item, boolean isChecked) {
-                                    Log.i("Dialogs", "Option el: " + strArray[item]);
+                                    Log.i("Dialogs", "Option el: " + testNameList.get(item).getTestName());
                                     if (isChecked) {
                                         // If the user checked the item, add it to the selected items
+//                                        selectedItems.add(testNameList.get(item).getTestName());
                                         selectedItems.add(strArray[item]);
+                                        selectedIndexes.add(item);
                                     } else if (selectedItems.contains(strArray[item])) {
+//                                    } else if (selectedItems.contains(testNameList.get(item).getTestName())) {
                                         // Else, if the item is already in the array, remove it
+//                                        selectedItems.remove(testNameList.get(item).getTestName());
                                         selectedItems.remove(strArray[item]);
+                                        selectedIndexes.remove(item);
                                     }
                                 }
                             });
@@ -479,5 +502,34 @@ public class PaymentReceiptActivity extends BaseActivity {
         setRadio();
         etSalesPerson.setText(CommonData.getUserData().getFirstname());
 
+    }
+
+    public void testNamessList() {
+//        final CommonParams commonParams = new CommonParams.Builder()
+//                .add(PARAM_EMAIL, CommonData.getUserData().getEmail())
+//                .build();
+
+        RestClient.getApiInterface().testNames().enqueue(new ResponseResolver<List<TestNameList>>() {
+            @Override
+            public void onSuccess(List<TestNameList> commonResponse) {
+                Log.d("onSuccess", "" + commonResponse);
+
+                testNameList = (ArrayList<Product>) commonResponse.get(0).getProduct();
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                Log.d("onError", "" + error);
+                showErrorMessage(error.getMessage());
+
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                showErrorMessage(throwable.getMessage());
+
+            }
+        });
     }
 }

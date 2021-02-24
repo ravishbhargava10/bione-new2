@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/llVisible"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:layout_marginHorizontal="@dimen/spacing_medium"
+    android:layout_marginBottom="@dimen/spacing_medium"
     android:padding="@dimen/spacing_medium"
-    android:layout_centerInParent="true">
+    app:cardCornerRadius="@dimen/spacing_large">
 
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_medium">
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="@dimen/spacing_xsmall"
             android:layout_margin="@dimen/spacing_xsmall"
-            >
+            android:backgroundTint="#083d44f0"
+            android:elevation="@dimen/spacing_xsmall"
+            app:cardCornerRadius="@dimen/spacing_large">
 
             <ImageView
                 android:id="@+id/image"
@@ -54,22 +58,39 @@
                     android:id="@+id/tvDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Explore your Smart Diet"
+                    android:text="Discover &amp; understand your
+gastrointestinal microbiodta and best suited personalised diet for a healthy &amp; happy life."
                     android:textColor="@color/black"
-                    android:textSize="@dimen/font_tiny" />
+                    android:textSize="@dimen/font_xsmall" />
+
 
             </LinearLayout>
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_small"
-                android:layout_marginRight="@dimen/spacing_small"
-                android:layout_toRightOf="@+id/llLeft"
-                android:src="@drawable/ic_button_next_light" />
+                android:layout_below="@+id/llLeft"
+                android:layout_alignEnd="@+id/llLeft"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Know More" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_marginRight="@dimen/spacing_small"
+                    android:src="@drawable/ic_arrow_right_primary" />
+
+            </LinearLayout>
 
         </RelativeLayout>
     </LinearLayout>
 
 
-</RelativeLayout>
+</androidx.cardview.widget.CardView>

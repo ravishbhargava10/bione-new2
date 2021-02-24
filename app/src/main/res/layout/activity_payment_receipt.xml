@@ -61,8 +61,8 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/etTestName"
                     style="@style/textInputEditText"
-                    android:hint="Test Name"
-                    android:drawableRight="@drawable/ic_down_primary" />
+                    android:drawableRight="@drawable/ic_down_primary"
+                    android:hint="Test Name" />
 
                 <View style="@style/viewLine" />
 
@@ -77,15 +77,15 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/etTestHeading"
                     style="@style/textInputEditText"
-                    android:hint="Test Names"
-                    android:drawableRight="@drawable/ic_down_primary" />
+                    android:drawableRight="@drawable/ic_down_primary"
+                    android:hint="Test Names" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/etTestList"
                     style="@style/textInputEditText"
+                    android:drawableRight="@drawable/ic_down_primary"
                     android:text="bione x6 bione x6 bione x6 bione x6 bione x6"
-                    android:visibility="gone"
-                    android:drawableRight="@drawable/ic_down_primary" />
+                    android:visibility="gone" />
 
                 <View style="@style/viewLine" />
 
@@ -135,20 +135,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:weightSum="1">
 
                 <RadioButton
                     android:id="@+id/radio1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
                     android:checked="true"
                     android:text="Full Payment"
                     android:textSize="@dimen/font_small" />
 
                 <RadioButton
                     android:id="@+id/radio2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
                     android:text="Partial Payment"
                     android:textSize="@dimen/font_small" />
             </RadioGroup>
@@ -174,15 +177,15 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPaymentMode"
-                    android:visibility="gone"
                     style="@style/textInputEditText"
-                    android:drawableRight="@drawable/ic_down_primary" />
+                    android:drawableRight="@drawable/ic_down_primary"
+                    android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinner"
                     style="@style/textInputEditText"
-                    android:drawableRight="@drawable/ic_down_primary"
-                    android:background="@color/white" />
+                    android:background="@color/white"
+                    android:drawableRight="@drawable/ic_down_primary" />
 
                 <View style="@style/viewLine" />
 
@@ -222,8 +225,8 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/etDate"
                     style="@style/textInputEditText"
-                    android:hint="Balance Amount will be paid on date"
-                    android:drawableRight="@drawable/ic_calendar" />
+                    android:drawableRight="@drawable/ic_calendar"
+                    android:hint="Balance Amount will be paid on date" />
 
                 <View style="@style/viewLine" />
 

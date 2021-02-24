@@ -46,11 +46,14 @@
             <item
                 android:title="" />
             <item
-                android:id="@+id/nav_about_us"
-                android:title="@string/nav_about_us" />
+                android:id="@+id/nav_term_condition"
+                android:title="@string/nav_terms_conditions" />
             <item
                 android:id="@+id/nav_privacy_policy"
-                android:title="@string/privacy_policy" />
+                android:title="@string/nav_privacy_policy" />
+            <item
+                android:id="@+id/nav_faq_support"
+                android:title="@string/nav_faq_support" />
         </menu>
     </item>
 

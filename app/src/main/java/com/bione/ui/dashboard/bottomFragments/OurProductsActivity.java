@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,12 +21,21 @@ public class OurProductsActivity extends BaseActivity {
 
     private ArrayList<CrouselData> crouselDataArrayList;
     private RecyclerView recyclerViewCarousel;
+    private AppCompatImageView ivBack;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewall);
 
+
+        ivBack = findViewById(R.id.ivBack);
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         setArrayList();
         onSetRecyclerView();
     }
@@ -74,8 +84,8 @@ public class OurProductsActivity extends BaseActivity {
         data.setUrl("");
 
         CrouselData data1 = new CrouselData();
-//        data1.setDrawable(R.mipmap.image_longevity);
-        data1.setDrawableTest(R.drawable.bitmap);
+        data1.setDrawable(R.drawable.image_longevity);
+//        data1.setDrawableTest(R.drawable.bitmap);
         data1.setHeadingTest("Longevity Plus\nTest");
         data1.setHeading("Longevity Plus Test");
         data1.setText("World's most comprehensive high-throughput DNA test - The best investment to know how your genes " + "affect various health aspects for " + "timely management");
@@ -85,8 +95,8 @@ public class OurProductsActivity extends BaseActivity {
         data1.setUrl("https://www.bione.in/longevity-plus-test");
 
         CrouselData data2 = new CrouselData();
-//        data2.setDrawable(R.mipmap.image_microbiome);
-        data2.setDrawableTest(R.drawable.bitmap);
+        data2.setDrawable(R.drawable.image_microbiome);
+//        data2.setDrawableTest(R.drawable.bitmap);
         data2.setHeadingTest("MyMicrobiome\nTest");
         data2.setHeading("MyMicrobiome Test");
         data2.setText("Discover & understand your gastrointestinal microbiota and best " + "suited personalised diet for a " + "healthy & happy life.");
@@ -96,8 +106,8 @@ public class OurProductsActivity extends BaseActivity {
         data2.setUrl("https://www.bione.in/mymicrobiome-test");
 
         CrouselData data3 = new CrouselData();
-//        data3.setDrawable(R.mipmap.image_longifit);
-        data3.setDrawableTest(R.drawable.bitmap);
+        data3.setDrawable(R.drawable.image_longifit);
+//        data3.setDrawableTest(R.drawable.bitmap);
         data3.setHeadingTest("LongiFit\nTest");
         data3.setHeading("LongiFit");
         data3.setText("Get deep insight into DNA. Understand how your body " + "responds to sports, dietary needs, food reactions, skin health & " + "overall fitness.");
@@ -107,8 +117,8 @@ public class OurProductsActivity extends BaseActivity {
         data3.setUrl("https://www.bione.in/longifit-test");
 
         CrouselData data4 = new CrouselData();
-//        data4.setDrawable(R.mipmap.imge_gene_chek);
-        data4.setDrawableTest(R.drawable.bitmap);
+        data4.setDrawable(R.drawable.imge_gene_chek);
+//        data4.setDrawableTest(R.drawable.bitmap);
         data4.setHeadingTest("Gene-Check\nTest");
         data4.setHeading("Bione Gene-Check");
         data4.setText("Discover & understand how your " + "genes can be responsible for the susceptibility to viral infections like " + "SARS and Influenza.");
@@ -118,8 +128,8 @@ public class OurProductsActivity extends BaseActivity {
         data4.setUrl("https://www.bione.in/gene-chec-test");
 
         CrouselData data5 = new CrouselData();
-//        data5.setDrawable(R.mipmap.image_clinical);
-        data5.setDrawableTest(R.drawable.bitmap);
+        data5.setDrawable(R.drawable.image_clinical);
+//        data5.setDrawableTest(R.drawable.bitmap);
         data5.setHeadingTest("Genetic\nTest");
         data5.setHeading("Clinical \nGenetics Tests ");
         data5.setText("The genesis of elite\n" + "genetic testing");
@@ -144,7 +154,7 @@ public class OurProductsActivity extends BaseActivity {
         crouselDataArrayList.add(data3);   //LongiFit
         crouselDataArrayList.add(data4);   //Gene-Check
         crouselDataArrayList.add(data1);   //Longevity Plus
-//        crouselDataArrayList.add(data5);   //Clinical Genetic test
+        crouselDataArrayList.add(data5);   //Clinical Genetic test
 //        crouselDataArrayList.add(data6);   //empty
     }
 }

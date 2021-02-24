@@ -52,9 +52,12 @@
                     android:id="@+id/tvDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Explore your Smart Diet"
+                    android:maxWidth="120dp"
+                    android:text="Discover &amp; understand your
+gastrointestinal microbiodta and best suited personalised diet for a healthy &amp; happy life."
+                    android:singleLine="true"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/font_tiny" />
+                    android:textSize="@dimen/font_xsmall" />
 
             </LinearLayout>
 
