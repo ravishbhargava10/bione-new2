@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    android:layout_marginHorizontal="@dimen/spacing_medium"
-    android:layout_marginBottom="@dimen/spacing_medium"
+
+    android:layout_marginTop="@dimen/spacing_medium"
     android:padding="@dimen/spacing_medium"
     app:cardCornerRadius="@dimen/spacing_large">
 
@@ -52,12 +52,14 @@
                     android:text="MyMicroBiome Test"
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_small"
-                    android:textStyle="bold" />
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
+                 />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="@style/CustomTextAppearance"
                     android:text="Discover &amp; understand your
 gastrointestinal microbiodta and best suited personalised diet for a healthy &amp; happy life."
                     android:textColor="@color/black"
@@ -67,18 +69,22 @@ gastrointestinal microbiodta and best suited personalised diet for a healthy &am
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llKnowMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/llLeft"
                 android:layout_alignEnd="@+id/llLeft"
+                android:layout_alignBaseline="@+id/llLeft"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textAppearance="@style/CustomTextAppearance"
                     android:textColor="@color/colorPrimary"
-                    android:text="Know More" />
+                    android:textSize="@dimen/font_xsmall"
+                    android:text="@string/know_more" />
 
                 <ImageView
                     android:layout_width="wrap_content"

@@ -1,6 +1,8 @@
 package com.bione.ui.dashboard.bottomFragments.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +79,8 @@ public class KitDetailsAdapter extends RecyclerView.Adapter<KitDetailsAdapter.My
         holder.llVisible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(crouselDataArrayList.get(position).getUrl()));
+                mContext.startActivity(browserIntent);
             }
         });
 

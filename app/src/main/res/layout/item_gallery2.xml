@@ -4,8 +4,8 @@
     android:id="@+id/llVisible"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="@dimen/spacing_medium"
-    android:layout_centerInParent="true">
+    android:layout_centerInParent="true"
+    android:padding="@dimen/spacing_medium">
 
 
     <LinearLayout
@@ -16,8 +16,8 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="@dimen/spacing_xsmall"
-            android:layout_marginBottom="@dimen/spacing_medium">
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:elevation="@dimen/spacing_xsmall">
 
             <ImageView
                 android:id="@+id/image"
@@ -44,6 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MyMicroBiome Test"
+                    android:textAppearance="@style/CustomTextAppearance.Bold"
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_small"
                     android:textStyle="bold" />
@@ -53,9 +54,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxWidth="120dp"
+                    android:singleLine="true"
                     android:text="Discover &amp; understand your
 gastrointestinal microbiodta and best suited personalised diet for a healthy &amp; happy life."
-                    android:singleLine="true"
+                    android:textAppearance="@style/CustomTextAppearance"
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_xsmall" />
 

@@ -1,10 +1,13 @@
 package com.bione.ui.dashboard.bottomFragments.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -39,12 +42,14 @@ public class KitViewAllAdapter extends RecyclerView.Adapter<KitViewAllAdapter.My
         public ImageView image;
         public AppCompatTextView tvHeading;
         public AppCompatTextView tvDetail;
+        public LinearLayout llKnowMore;
 //        public AppCompatTextView tvText;
 
         public MyViewHolder(View v) {
             super(v);
             view = v;
 //            viewShaded = v.findViewById(R.id.viewShaded);
+            llKnowMore = v.findViewById(R.id.llKnowMore);
             image = v.findViewById(R.id.image);
             tvHeading = v.findViewById(R.id.tvHeading);
             tvDetail = v.findViewById(R.id.tvDetail);
@@ -77,7 +82,8 @@ public class KitViewAllAdapter extends RecyclerView.Adapter<KitViewAllAdapter.My
         holder.llVisible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(crouselDataArrayList.get(position).getUrl()));
+                mContext.startActivity(browserIntent);
             }
         });
 

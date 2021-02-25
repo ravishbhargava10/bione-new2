@@ -352,8 +352,8 @@ public class PaymentReceiptActivity extends BaseActivity {
                 .add("payment_mode", "" + spinner2.getSelectedItem().toString())
                 .add("remarks", "" + etRemarks.getText().toString())
                 .add("sales_person", CommonData.getUserData().getFirstname() + " " + CommonData.getUserData().getLastname())
-                .add("report_manager_email", "vipin@bione.in")
-//                .add("report_manager_email", "" + CommonData.getSalesData().getReportingManagerEmailId())
+//                .add("report_manager_email", "vipin@bione.in")
+                .add("report_manager_email", "" + CommonData.getSalesData().getReportingManagerEmailId())
                 .build();
 
         RestClient.getApiInterface2().customerReceiptSubmit(commonParams.getMap()).enqueue(new ResponseResolver<PaymentReceipt>() {
