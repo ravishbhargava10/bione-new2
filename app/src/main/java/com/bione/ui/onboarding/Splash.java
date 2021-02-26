@@ -90,6 +90,7 @@ public class Splash extends BaseActivity {
                 Log.d("admin ", "token :: " + CommonData.getAdminToken());
                 Intent intent;
                 if (CommonData.getUserData() != null) {
+                    CommonData.updateGuest(false);
                     intent = new Intent(Splash.this, MainActivity.class);
                 } else {
                     intent = new Intent(Splash.this, WalkActivity.class);

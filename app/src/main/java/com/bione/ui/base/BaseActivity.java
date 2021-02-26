@@ -280,7 +280,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
 
                             CommonData.saveUserData(customer);
 //                            Log.d("common data", "mobile :: " + CommonData.getUserData().getMobilenumber());
-
+                            CommonData.updateGuest(false);
                             Intent intent = new Intent(activity, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);

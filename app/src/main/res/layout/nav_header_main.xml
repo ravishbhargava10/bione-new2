@@ -34,7 +34,7 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="John Smith"
+                android:text=""
                 android:textSize="@dimen/font_normal"
                 android:textAppearance="@style/CustomTextAppearance.Bold"
                 android:textColor="@color/white" />
@@ -43,7 +43,7 @@
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="987654321"
+                android:text=""
                 android:textSize="@dimen/font_small"
                 android:textAppearance="@style/CustomTextAppearance"
                 android:textColor="@color/white" />

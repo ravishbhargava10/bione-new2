@@ -14,7 +14,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.bione.R;
 
+import com.bione.db.CommonData;
 import com.bione.ui.base.BaseActivity;
+import com.bione.ui.dashboard.MainActivity;
 import com.bione.ui.onboarding.LoginActivity;
 import com.bione.utils.CustomViewPager;
 
@@ -76,7 +78,11 @@ public class WalkActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tvSkip:
-                nextScreen();
+//                nextScreen();
+                CommonData.updateGuest(true);
+                Intent intent = new Intent(WalkActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 break;
 
             case R.id.ivNext:

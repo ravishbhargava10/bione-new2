@@ -13,6 +13,7 @@ import io.paperdb.Paper;
  */
 public final class CommonData {
 
+    private static final String PAPER_GUEST = "paper_guest";
     private static final String PAPER_DEVICE_TOKEN = "paper_device_token";
     private static final String PAPER_ADMIN_TOKEN = "paper_admin_token";
     private static final String PAPER_CUSTOMER_TOKEN = "paper_customer_token";
@@ -77,6 +78,23 @@ public final class CommonData {
      */
     public static void updateAdminToken(final String token) {
         Paper.book().write(PAPER_ADMIN_TOKEN, token);
+    }
+
+    /**
+     * Gets guest token.
+     *
+     * @return the guest token
+     */
+    public static boolean getGuest() {
+        return Paper.book().read(PAPER_GUEST);
+    }
+    /**
+     * Update guest token.
+     *
+     * @param isGuest the guest token
+     */
+    public static void updateGuest(final boolean isGuest) {
+        Paper.book().write(PAPER_GUEST, isGuest);
     }
 
     /**

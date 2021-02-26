@@ -69,13 +69,13 @@ public class HomeFragment extends BaseFragment {
             tvViewAll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startActivity( new Intent(mContext, OurProductsActivity.class));
+                    startActivity(new Intent(mContext, OurProductsActivity.class));
                 }
             });
 
-           setHeadText();
-           setArrayList();
-           onSetRecyclerView();
+            setHeadText();
+            setArrayList();
+            onSetRecyclerView();
         }
         return rootView;
     }
@@ -91,8 +91,11 @@ public class HomeFragment extends BaseFragment {
 
     }
 
-    private void setHeadText(){
-        String name = CommonData.getUserData().getFirstname();
+    private void setHeadText() {
+        String name = "";
+        if (CommonData.getUserData() != null) {
+            name = CommonData.getUserData().getFirstname();
+        }
         String first = "Hi " + name + " \n";
         String second = "We understand how \npriceless your health is!";
         Typeface font = Typeface.createFromAsset(getActivity().getAssets(), "fonts/Poppins-Regular.ttf");
@@ -106,7 +109,7 @@ public class HomeFragment extends BaseFragment {
 
     private void onSetRecyclerView() {
         recyclerViewCarousel = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        LinearLayoutManager linearLayoutManager=
+        LinearLayoutManager linearLayoutManager =
                 new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
         recyclerViewCarousel.setLayoutManager(linearLayoutManager);
 
@@ -127,6 +130,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
     }
+
     private void setArrayList() {
         crouselDataArrayList = new ArrayList<>();
 

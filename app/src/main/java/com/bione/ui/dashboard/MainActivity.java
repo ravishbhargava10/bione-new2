@@ -19,6 +19,7 @@ import com.bione.network.RestClient;
 import com.bione.ui.base.BaseActivity;
 
 import com.bione.ui.dashboard.paymentreceipt.PaymentReceiptFragment;
+import com.bione.ui.onboarding.LoginActivity;
 import com.bione.ui.onboarding.Splash;
 import com.bione.ui.onboarding.WebviewActivity;
 import com.bione.utils.Log;
@@ -125,13 +126,6 @@ public class MainActivity extends BaseActivity {
         // load nav menu header data
         loadNavHeader();
 
-        // Logic for mobilenumber verification
-        if (CommonData.getUserData().getMobilenumber() == null || CommonData.getUserData().getMobilenumber().equals("")) {
-            openDialog();
-        }
-
-        //logic for sales person screen
-        isSalesPerson();
 
         // initializing navigation menu
         setUpNavigationView();
@@ -152,26 +146,39 @@ public class MainActivity extends BaseActivity {
      */
     private void loadNavHeader() {
 
+        hideShowItem(false);
         // name, phone
         Customer customer = CommonData.getUserData();
-        if (customer.getFirstname() != null) {
-            if (customer.getLastname() != null) {
-                txtName.setText(customer.getFirstname() + " " + customer.getLastname());
-            } else {
-                txtName.setText(customer.getFirstname());
+        if (customer != null) {
+            if (customer.getFirstname() != null) {
+                if (customer.getLastname() != null) {
+                    txtName.setText(customer.getFirstname() + " " + customer.getLastname());
+                } else {
+                    txtName.setText(customer.getFirstname());
+                }
             }
-        }
-        if (customer.getMobilenumber() != null) {
-            txtPhone.setText("+" + customer.getMobilenumber());
-        }
+            if (customer.getMobilenumber() != null) {
+                txtPhone.setText("+" + customer.getMobilenumber());
+            }
 
-        if (CommonData.getUserPhoto() != null) {
-            File photoFile = new File(CommonData.getUserPhoto().get(0).getThumbnailSmallPath());
+            if (CommonData.getUserPhoto() != null) {
+                File photoFile = new File(CommonData.getUserPhoto().get(0).getThumbnailSmallPath());
 
-            Glide.with(getApplicationContext())
-                    .load(photoFile)
-                    .apply(RequestOptions.circleCropTransform())
-                    .into(ivProfile);
+                Glide.with(getApplicationContext())
+                        .load(photoFile)
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(ivProfile);
+            }
+
+            // Logic for mobilenumber verification
+            if (CommonData.getUserData().getMobilenumber() == null || CommonData.getUserData().getMobilenumber().equals("")) {
+                openDialog();
+            }
+
+            //logic for sales person screen
+            isSalesPerson();
+        } else {
+
         }
 
 
@@ -289,6 +296,7 @@ public class MainActivity extends BaseActivity {
     private void hideShowItem(boolean isShow) {
         Menu nav_Menu = navigationView.getMenu();
         nav_Menu.findItem(R.id.nav_receipt).setVisible(isShow);
+        nav_Menu.findItem(R.id.nav_chat).setVisible(isShow);
     }
 
     private void setUpNavigationView() {
@@ -311,8 +319,14 @@ public class MainActivity extends BaseActivity {
                         break;
 
                     case R.id.nav_profile:
-                        navItemIndex = 1;
-                        CURRENT_TAG = TAG_PROFILE;
+                        if (CommonData.getGuest()) {
+                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            drawer.closeDrawers();
+                        } else {
+                            navItemIndex = 1;
+                            CURRENT_TAG = TAG_PROFILE;
+                        }
                         break;
 
 //                    case R.id.nav_session:

@@ -145,6 +145,7 @@ public class LoginActivity extends BaseActivity {
         tvCreateAccount = findViewById(R.id.tvCreateAccount);
         tvForgotPassword = findViewById(R.id.tvForgotPassword);
         tvLogin = findViewById(R.id.tvLogin);
+        tvResendOtp = findViewById(R.id.tvResendOtp);
 
         etMobile = findViewById(R.id.etMobile);
         etOtp = findViewById(R.id.etOtp);
@@ -167,6 +168,7 @@ public class LoginActivity extends BaseActivity {
         tvForgotPassword.setOnClickListener(this);
         ivFB.setOnClickListener(this);
         ivGoogle.setOnClickListener(this);
+        tvResendOtp.setOnClickListener(this);
     }
 
     @Override
@@ -209,7 +211,11 @@ public class LoginActivity extends BaseActivity {
 //                break;
 
             case R.id.tvResendOtp:
-
+                if (ValidationUtil.checkPhone(phoneNumber)) {
+                    callSendOtp(phoneNumber, false);
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.error_mobile, Toast.LENGTH_SHORT).show();
+                }
                 break;
 
             case R.id.ivGoogle:
@@ -440,7 +446,7 @@ public class LoginActivity extends BaseActivity {
                         CommonData.updateCustomerToken("");
                         CommonData.saveUserData(commonResponse.get(0).toResponseModel(Customer.class));
                         Log.d("common data", "email :: " + CommonData.getUserData().getEmail());
-
+                        CommonData.updateGuest(false);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         // set the new task and clear flags
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -527,7 +533,7 @@ public class LoginActivity extends BaseActivity {
                         CommonData.updateCustomerToken("");
                         CommonData.saveUserData(commonResponse.get(0).toResponseModel(Customer.class));
                         Log.d("common data", "email :: " + CommonData.getUserData().getEmail());
-
+                        CommonData.updateGuest(false);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         // set the new task and clear flags
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -617,7 +623,7 @@ public class LoginActivity extends BaseActivity {
                     CommonData.saveUserData(customer);
 
                     Log.d("common data", "mobile :: " + CommonData.getUserData().getMobilenumber());
-
+                    CommonData.updateGuest(false);
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     // set the new task and clear flags
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
